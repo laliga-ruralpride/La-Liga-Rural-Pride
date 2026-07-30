@@ -1,0 +1,71 @@
+{
+  "members": [
+    { "name": "Alvaro \"Ciro\"", "role": "Voz principal" },
+    { "name": "Manu", "role": "Guitarra Rítmica" },
+    { "name": "Sergio Pérez", "role": "Guitarra Solista" },
+    { "name": "Juan \"Pancho\"", "role": "Bajo" },
+    { "name": "Fernando", "role": "Batería" },
+    { "name": "Jorge Santos", "role": "Vientos (Trompeta)" },
+    { "name": "Mario García", "role": "Vientos (Saxo)" },
+    { "name": "Pablillo", "role": "Vientos (Trombón)" }
+  ],
+  "discography": [
+    {
+      "title": "Aire Nuevo",
+      "year": "2024",
+      "cover": "/images/airenuevo.JPG",
+      "description": "Nuestro primer zarpazo. Un grito a las raíces y a la nostalgia que sientes cuando te obligan a cambiar tu tierra por el asfalto de la gran ciudad.",
+      "spotifyEmbed": ""
+    },
+    {
+      "title": "Vida de Circo",
+      "year": "2024",
+      "cover": "/images/vidacirco.png",
+      "description": "Segundo tema propio de La Liga Rural Pride, directo y potente.",
+      "spotifyEmbed": ""
+    },
+    {
+      "title": "Próximo EP",
+      "year": "2026",
+      "cover": "/images/EP.jpg",
+      "description": "Actualmente estamos trabajando en la composición y grabación de lo que será nuestro primer EP de estudio.",
+      "spotifyEmbed": ""
+    }
+  ],
+  "merch": [
+    {
+      "name": "Camiseta Clásica",
+      "type": "Ropa",
+      "price": "15€"
+    },
+    {
+      "name": "Sudadera Logo",
+      "type": "Ropa",
+      "price": "30€"
+    },
+    {
+      "name": "Tote Bag Punk",
+      "type": "Accesorios",
+      "price": "10€"
+    },
+    {
+      "name": "Pack Pegatinas",
+      "type": "Accesorios",
+      "price": "5€"
+    }
+  ],
+  "gigs": [
+    {
+      "date": "2026-08-15T22:00:00.000Z",
+      "venue": "Fiestas Populares",
+      "city": "Mozoncillo, Segovia",
+      "status": "confirmed"
+    },
+    {
+      "date": "2026-09-02T22:00:00.000Z",
+      "venue": "Fiestas Populares",
+      "city": "Las Navillas, Segovia",
+      "status": "confirmed"
+    }
+  ]
+}
