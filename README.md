@@ -1,1 +1,0 @@
-# La-Liga-Rural-Pride
