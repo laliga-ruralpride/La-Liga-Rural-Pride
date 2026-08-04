@@ -9,6 +9,7 @@ import {
   MapPin,
   Play,
   ChevronDown,
+  ChevronUp,
   Music,
   Users,
   Calendar,
@@ -49,6 +50,42 @@ const CookieBanner = () => {
         </button>
       </div>
     </div>
+  );
+};
+
+const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 500) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  };
+
+  if (!isVisible) return null;
+
+  return (
+    <button
+      onClick={scrollToTop}
+      aria-label="Volver arriba"
+      className="fixed bottom-24 right-4 z-40 bg-[#E11D48] text-[#eeeeee] p-3 rounded-full shadow-lg hover:bg-[#b01335] transition-all transform hover:scale-110"
+    >
+      <ChevronUp size={24} />
+    </button>
   );
 };
 
@@ -97,6 +134,7 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
             className="md:hidden text-[#eeeeee]"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="mobile-menu-toggle"
+            aria-label="Abrir menú"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -251,7 +289,7 @@ const DiscographySection = ({ discography, bandInfo }) => {
           {discography.map((album, index) => (
             <div key={index} className="card-punk p-0 overflow-hidden" data-testid={`album-${index}`}>
               <div className="album-cover">
-                <img src={process.env.PUBLIC_URL + album.cover} alt={album.title} />
+                <img src={process.env.PUBLIC_URL + album.cover} alt={album.title} loading="lazy" />
                 <div className="album-overlay">
                   <span className="text-[#E11D48] font-mono text-sm">{album.year}</span>
                   <h3 className="font-['Anton'] text-3xl uppercase">{album.title}</h3>
@@ -408,7 +446,7 @@ const GallerySection = () => {
         <div className="gallery-grid">
           {/* Row 1 */}
           <div className="gallery-item" data-testid="gallery-img-ligagrupo">
-            <img src={process.env.PUBLIC_URL + "/images/ligagrupo.jpg"} alt="Logo La Liga" />
+            <img src={process.env.PUBLIC_URL + "/images/ligagrupo.jpg"} alt="Logo La Liga" loading="lazy" />
           </div>
           <div className="gallery-item bg-[#FFE600] flex items-center justify-center p-6">
             <p className="font-['Anton'] text-3xl uppercase text-center leading-tight text-[#050505]">
@@ -416,12 +454,12 @@ const GallerySection = () => {
             </p>
           </div>
           <div className="gallery-item" data-testid="gallery-img-airenuevo">
-            <img src={process.env.PUBLIC_URL + "/images/airenuevo.JPG"} alt="Aire Nuevo" />
+            <img src={process.env.PUBLIC_URL + "/images/airenuevo.JPG"} alt="Aire Nuevo" loading="lazy" />
           </div>
 
           {/* Row 2 */}
           <div className="gallery-item" data-testid="gallery-img-madrid">
-            <img src={process.env.PUBLIC_URL + "/images/madridfoto.jpg"} alt="Concierto Madrid" />
+            <img src={process.env.PUBLIC_URL + "/images/madridfoto.jpg"} alt="Concierto Madrid" loading="lazy" />
           </div>
           <div className="gallery-item bg-[#E11D48] flex items-center justify-center p-6">
             <p className="font-['Anton'] text-3xl uppercase text-center leading-tight">
@@ -429,12 +467,12 @@ const GallerySection = () => {
             </p>
           </div>
           <div className="gallery-item" data-testid="gallery-img-vidacirco">
-            <img src={process.env.PUBLIC_URL + "/images/vidacirco.png"} alt="Vida de Circo" />
+            <img src={process.env.PUBLIC_URL + "/images/vidacirco.png"} alt="Vida de Circo" loading="lazy" />
           </div>
 
           {/* Row 3 */}
           <div className="gallery-item" data-testid="gallery-img-carbonero">
-            <img src={process.env.PUBLIC_URL + "/images/Carbonero.jpg"} alt="Carbonero" />
+            <img src={process.env.PUBLIC_URL + "/images/Carbonero.jpg"} alt="Carbonero" loading="lazy" />
           </div>
           <div className="gallery-item bg-[#121212] border border-[#333333] flex items-center justify-center p-6">
             <p className="handwritten text-2xl text-center">
@@ -445,6 +483,7 @@ const GallerySection = () => {
             <img 
               src={process.env.PUBLIC_URL + "/images/Festivalino.jpg"} 
               alt="Festivalino" 
+              loading="lazy"
               style={{ objectPosition: "bottom" }}
             />
           </div>
@@ -780,6 +819,7 @@ function App() {
       </main>
       <Footer bandInfo={bandInfo} />
       <CookieBanner />
+      <ScrollToTop />
     </div>
   );
 }
