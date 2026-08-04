@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/La-Liga-Rural-Pride/static/css/main.b8825cbf.css",
-    "main.js": "/La-Liga-Rural-Pride/static/js/main.dedc5865.js",
+    "main.css": "/La-Liga-Rural-Pride/static/css/main.1e365070.css",
+    "main.js": "/La-Liga-Rural-Pride/static/js/main.10b1a620.js",
     "index.html": "/La-Liga-Rural-Pride/index.html",
-    "main.b8825cbf.css.map": "/La-Liga-Rural-Pride/static/css/main.b8825cbf.css.map",
-    "main.dedc5865.js.map": "/La-Liga-Rural-Pride/static/js/main.dedc5865.js.map"
+    "main.1e365070.css.map": "/La-Liga-Rural-Pride/static/css/main.1e365070.css.map",
+    "main.10b1a620.js.map": "/La-Liga-Rural-Pride/static/js/main.10b1a620.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8825cbf.css",
-    "static/js/main.dedc5865.js"
+    "static/css/main.1e365070.css",
+    "static/js/main.10b1a620.js"
   ]
 }
