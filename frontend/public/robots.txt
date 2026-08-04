@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://laliga-ruralpride.github.io/La-Liga-Rural-Pride/sitemap.xml

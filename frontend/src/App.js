@@ -18,6 +18,39 @@ import {
 } from "lucide-react";
 import bandData from "./data/bandData.json";
 
+const CookieBanner = () => {
+  const [showBanner, setShowBanner] = useState(false);
+
+  useEffect(() => {
+    const hasAccepted = localStorage.getItem("cookiesAccepted");
+    if (!hasAccepted) {
+      setShowBanner(true);
+    }
+  }, []);
+
+  const acceptCookies = () => {
+    localStorage.setItem("cookiesAccepted", "true");
+    setShowBanner(false);
+  };
+
+  if (!showBanner) return null;
+
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-[#333333] p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl">
+      <p className="text-[#eeeeee] text-sm md:text-base font-mono">
+        Utilizamos cookies (las justas y necesarias) para que la web funcione correctamente y podamos organizar mejores conciertos. Si te quedas, entendemos que te parece bien.
+      </p>
+      <div className="flex gap-4 shrink-0">
+        <button 
+          onClick={acceptCookies}
+          className="bg-[#E11D48] text-[#eeeeee] font-['Anton'] tracking-wider px-6 py-2 uppercase hover:bg-[#b01335] transition-colors"
+        >
+          ¡A darle caña!
+        </button>
+      </div>
+    </div>
+  );
+};
 
 // Navigation Component
 const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) => {
@@ -746,6 +779,7 @@ function App() {
         <ContactSection bandInfo={bandInfo} />
       </main>
       <Footer bandInfo={bandInfo} />
+      <CookieBanner />
     </div>
   );
 }
