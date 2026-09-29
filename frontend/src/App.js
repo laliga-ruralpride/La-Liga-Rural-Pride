@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "@/App.css";
 import { Toaster, toast } from "sonner";
 import {
@@ -13,12 +13,14 @@ import {
   Music,
   Users,
   Calendar,
+  CheckCircle,
   ShoppingBag,
   Menu,
   X
 } from "lucide-react";
 import bandData from "./data/bandData.json";
 
+// Cookie Banner
 const CookieBanner = () => {
   const [showBanner, setShowBanner] = useState(false);
 
@@ -39,10 +41,11 @@ const CookieBanner = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-[#333333] p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl">
       <p className="text-[#eeeeee] text-sm md:text-base font-mono">
-        Utilizamos cookies (las justas y necesarias) para que la web funcione correctamente y podamos organizar mejores conciertos. Si te quedas, entendemos que te parece bien.
+        Utilizamos cookies (las justas y necesarias) para que la web funcione correctamente y
+        podamos organizar mejores conciertos. Si te quedas, entendemos que te parece bien.
       </p>
       <div className="flex gap-4 shrink-0">
-        <button 
+        <button
           onClick={acceptCookies}
           className="bg-[#E11D48] text-[#eeeeee] font-['Anton'] tracking-wider px-6 py-2 uppercase hover:bg-[#b01335] transition-colors"
         >
@@ -53,6 +56,7 @@ const CookieBanner = () => {
   );
 };
 
+// Scroll To Top Button
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -82,7 +86,7 @@ const ScrollToTop = () => {
     <button
       onClick={scrollToTop}
       aria-label="Volver arriba"
-      className="fixed bottom-24 right-4 z-40 bg-[#E11D48] text-[#eeeeee] p-3 rounded-full shadow-lg hover:bg-[#b01335] transition-all transform hover:scale-110"
+      className="fixed bottom-6 md:bottom-24 right-4 z-40 bg-[#E11D48] text-[#eeeeee] p-3 rounded-full shadow-lg hover:bg-[#b01335] transition-all transform hover:scale-110"
     >
       <ChevronUp size={24} />
     </button>
@@ -107,7 +111,10 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
         <div className="flex items-center justify-between h-16">
           <a
             href="#hero"
-            onClick={(e) => { e.preventDefault(); onNavigate("hero"); }}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate("hero");
+            }}
             className="font-['Anton'] text-2xl tracking-tight text-[#E11D48]"
             data-testid="nav-logo"
           >
@@ -120,8 +127,11 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
               <a
                 key={item.id}
                 href={`#${item.id}`}
-                onClick={(e) => { e.preventDefault(); onNavigate(item.id); }}
-                className={`nav-link ${activeSection === item.id ? "text-[#E11D48]" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(item.id);
+                }}
+                className={`nav-link ${activeSection === item.id ? "nav-link-active" : ""}`}
                 data-testid={`nav-${item.id}`}
               >
                 {item.label}
@@ -131,10 +141,11 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#eeeeee]"
+            className="md:hidden text-[#eeeeee] p-2.5 -mr-2.5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="mobile-menu-toggle"
-            aria-label="Abrir menú"
+            aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -152,7 +163,9 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
                   onNavigate(item.id);
                   setIsMenuOpen(false);
                 }}
-                className="block py-3 nav-link"
+                className={`block py-3 nav-link nav-link-mobile ${
+                  activeSection === item.id ? "nav-link-active" : ""
+                }`}
                 data-testid={`mobile-nav-${item.id}`}
               >
                 {item.label}
@@ -176,9 +189,9 @@ const HeroSection = ({ bandInfo, onNavigate }) => {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src={process.env.PUBLIC_URL + "/images/portada.JPG"}
+          src={process.env.PUBLIC_URL + "/images/portada.jpg"}
           alt="La Liga en concierto"
-          className="w-full h-full object-cover filter grayscale"
+          className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-[#050505]/70"></div>
       </div>
@@ -231,26 +244,23 @@ const BioSection = ({ bandInfo, members }) => {
           {/* Text Content */}
           <div>
             <h2 className="section-title text-[#eeeeee] mb-8">Biografía</h2>
-            <p className="font-mono text-[#eeeeee] leading-relaxed mb-6">
-              {bandInfo.bio}
-            </p>
-            <p className="font-mono text-[#888888] leading-relaxed mb-8">
-              {bandInfo.bioExtended}
-            </p>
+            <p className="font-mono text-[#eeeeee] leading-relaxed mb-6">{bandInfo.bio}</p>
+            <p className="font-mono text-[#888888] leading-relaxed mb-8">{bandInfo.bioExtended}</p>
             <p className="handwritten text-xl">
-              "Tras giras por Segovia, Madrid y Salamanca, consideramos que tenemos algo valioso que ofrecer"
+              "Tras giras por Segovia, Madrid y Salamanca, consideramos que tenemos algo valioso que
+              ofrecer"
             </p>
           </div>
 
           {/* Image */}
           <div className="relative">
             <img
-              src={process.env.PUBLIC_URL + "/images/laliga.JPG"}
+              src={process.env.PUBLIC_URL + "/images/laliga.jpg"}
               alt="La Liga Rural Pride banda"
-              className="w-full h-[500px] object-cover filter grayscale border border-[#333333]"
+              className="w-full aspect-square lg:aspect-auto lg:h-[500px] object-cover border border-[#333333]"
             />
-            <div className="absolute -bottom-4 -right-4 bg-[#E11D48] p-4">
-              <p className="font-['Anton'] text-4xl">{bandInfo.year}</p>
+            <div className="absolute -bottom-4 right-0 lg:-right-4 bg-[#E11D48] p-3 lg:p-4">
+              <p className="font-['Anton'] text-3xl lg:text-4xl">{bandInfo.year}</p>
             </div>
           </div>
         </div>
@@ -261,7 +271,7 @@ const BioSection = ({ bandInfo, members }) => {
             <Users className="text-[#E11D48]" size={28} />
             Los Miembros
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6">
             {members.map((member, index) => (
               <div key={index} className="member-card card-punk" data-testid={`member-${index}`}>
                 <p className="member-name">{member.name}</p>
@@ -285,18 +295,22 @@ const DiscographySection = ({ discography, bandInfo }) => {
           Nuestros lanzamientos oficiales. Próximamente: primer EP.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {discography.map((album, index) => (
-            <div key={index} className="card-punk p-0 overflow-hidden" data-testid={`album-${index}`}>
+            <div
+              key={index}
+              className="card-punk album-card p-0 overflow-hidden"
+              data-testid={`album-${index}`}
+            >
               <div className="album-cover">
                 <img src={process.env.PUBLIC_URL + album.cover} alt={album.title} loading="lazy" />
                 <div className="album-overlay">
-                  <span className="text-[#E11D48] font-mono text-sm">{album.year}</span>
-                  <h3 className="font-['Anton'] text-3xl uppercase">{album.title}</h3>
+                  <span className="text-[#E11D48] font-mono text-xs">{album.year}</span>
+                  <h3 className="font-['Anton'] text-2xl uppercase">{album.title}</h3>
                 </div>
               </div>
-              <div className="p-6">
-                <p className="font-mono text-[#888888] mb-6">{album.description}</p>
+              <div className="p-4">
+                <p className="font-mono text-[#888888] text-sm mb-4">{album.description}</p>
                 {album.spotifyEmbed && (
                   <div className="spotify-embed">
                     <iframe
@@ -352,11 +366,21 @@ const GigsSection = ({ gigs }) => {
         {gigs.length > 0 ? (
           <div className="space-y-4">
             {gigs.map((gig, index) => (
-              <div key={index} className="card-punk flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-[#1a1a1a]">
+              <div
+                key={index}
+                className="card-punk flex flex-col md:flex-row items-center justify-between gap-6 hover:bg-[#1a1a1a]"
+              >
                 <div className="flex flex-col md:flex-row items-center gap-8 w-full">
                   <div className="text-center md:text-left min-w-[120px]">
-                    <p className="font-['Anton'] text-3xl text-[#E11D48]">{new Date(gig.date).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}</p>
-                    <p className="font-mono text-sm text-[#888888]">{new Date(gig.date).getFullYear()}</p>
+                    <p className="font-['Anton'] text-3xl text-[#E11D48]">
+                      {new Date(gig.date).toLocaleDateString("es-ES", {
+                        day: "2-digit",
+                        month: "short"
+                      })}
+                    </p>
+                    <p className="font-mono text-sm text-[#888888]">
+                      {new Date(gig.date).getFullYear()}
+                    </p>
                   </div>
                   <div className="text-center md:text-left">
                     <p className="font-['Anton'] text-2xl uppercase">{gig.venue}</p>
@@ -383,7 +407,9 @@ const GigsSection = ({ gigs }) => {
           </div>
         ) : (
           <div className="card-punk text-center py-12">
-            <p className="font-mono text-[#888888]">Próximas fechas muy pronto. ¡Mantente atento!</p>
+            <p className="font-mono text-[#888888]">
+              Próximas fechas muy pronto. ¡Mantente atento!
+            </p>
           </div>
         )}
       </div>
@@ -420,9 +446,7 @@ const MerchSection = ({ merch, bandInfo }) => {
         </div>
 
         <div className="mt-12 text-center">
-          <p className="font-mono text-[#888888] mb-4">
-            Para pedidos, escríbenos a:
-          </p>
+          <p className="font-mono text-[#888888] mb-4">Para pedidos, escríbenos a:</p>
           <a
             href={`mailto:${bandInfo.contact.email}?subject=Pedido Merch La Liga`}
             className="btn-punk-solid"
@@ -445,21 +469,30 @@ const GallerySection = () => {
 
         <div className="gallery-grid">
           {/* Row 1 */}
-          <div className="gallery-item" data-testid="gallery-img-ligagrupo">
-            <img src={process.env.PUBLIC_URL + "/images/ligagrupo.jpg"} alt="Logo La Liga" loading="lazy" />
+          <div className="gallery-item" data-testid="gallery-img-nava">
+            <img src={process.env.PUBLIC_URL + "/images/Nava.jpg"} alt="Nava" loading="lazy" />
           </div>
-          <div className="gallery-item bg-[#FFE600] flex items-center justify-center p-6">
-            <p className="font-['Anton'] text-3xl uppercase text-center leading-tight text-[#050505]">
-              Desde 2022
+          <div className="gallery-item bg-[#121212] border border-[#333333] flex items-center justify-center p-4 md:p-6">
+            <p className="handwritten text-lg md:text-2xl text-center">
+              "El público es parte de la banda"
             </p>
           </div>
-          <div className="gallery-item" data-testid="gallery-img-airenuevo">
-            <img src={process.env.PUBLIC_URL + "/images/airenuevo.JPG"} alt="Aire Nuevo" loading="lazy" />
+          <div className="gallery-item" data-testid="gallery-img-ep">
+            <img
+              src={process.env.PUBLIC_URL + "/images/DeLunesAViernes.jpg"}
+              alt="De Lunes a Viernes EP"
+              loading="lazy"
+              style={{ objectPosition: "bottom" }}
+            />
           </div>
 
           {/* Row 2 */}
-          <div className="gallery-item" data-testid="gallery-img-madrid">
-            <img src={process.env.PUBLIC_URL + "/images/madridfoto.jpg"} alt="Concierto Madrid" loading="lazy" />
+          <div className="gallery-item" data-testid="gallery-img-matanzanava">
+            <img
+              src={process.env.PUBLIC_URL + "/images/matanzaNava.jpg"}
+              alt="Concierto Nava"
+              loading="lazy"
+            />
           </div>
           <div className="gallery-item bg-[#E11D48] flex items-center justify-center p-6">
             <p className="font-['Anton'] text-3xl uppercase text-center leading-tight">
@@ -467,24 +500,32 @@ const GallerySection = () => {
             </p>
           </div>
           <div className="gallery-item" data-testid="gallery-img-vidacirco">
-            <img src={process.env.PUBLIC_URL + "/images/vidacirco.png"} alt="Vida de Circo" loading="lazy" />
+            <img
+              src={process.env.PUBLIC_URL + "/images/vidacirco.jpg"}
+              alt="Vida de Circo"
+              loading="lazy"
+            />
           </div>
 
           {/* Row 3 */}
-          <div className="gallery-item" data-testid="gallery-img-carbonero">
-            <img src={process.env.PUBLIC_URL + "/images/Carbonero.jpg"} alt="Carbonero" loading="lazy" />
+          <div className="gallery-item" data-testid="gallery-img-ligagrupo">
+            <img
+              src={process.env.PUBLIC_URL + "/images/ligagrupo.jpg"}
+              alt="Logo La Liga"
+              loading="lazy"
+            />
           </div>
-          <div className="gallery-item bg-[#121212] border border-[#333333] flex items-center justify-center p-6">
-            <p className="handwritten text-2xl text-center">
-              "El público es parte de la banda"
+          {/* Oculto en móvil para que las 2 columnas queden completas */}
+          <div className="gallery-item bg-[#FFE600] hidden md:flex items-center justify-center p-6">
+            <p className="font-['Anton'] text-3xl uppercase text-center leading-tight text-[#050505]">
+              Desde 2022
             </p>
           </div>
-          <div className="gallery-item" data-testid="gallery-img-festivalino">
-            <img 
-              src={process.env.PUBLIC_URL + "/images/Festivalino.jpg"} 
-              alt="Festivalino" 
+          <div className="gallery-item" data-testid="gallery-img-airenuevo">
+            <img
+              src={process.env.PUBLIC_URL + "/images/airenuevo.jpg"}
+              alt="Aire Nuevo"
               loading="lazy"
-              style={{ objectPosition: "bottom" }}
             />
           </div>
         </div>
@@ -495,6 +536,41 @@ const GallerySection = () => {
 
 // Booking Section
 const BookingSection = () => {
+  // idle | sending | sent
+  const [status, setStatus] = useState("idle");
+  const successRef = useRef(null);
+
+  // El aviso es mucho más corto que el formulario: llevarlo a la vista
+  useEffect(() => {
+    if (status === "sent") {
+      successRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [status]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    setStatus("sending");
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      });
+
+      if (!response.ok) throw new Error(`Formspree ${response.status}`);
+
+      form.reset();
+      setStatus("sent");
+      toast.dismiss();
+      toast.success("¡Solicitud enviada! Te contestamos pronto.");
+    } catch (error) {
+      setStatus("idle");
+      toast.error("No se ha podido enviar. Inténtalo de nuevo o escríbenos por email.");
+    }
+  };
+
   return (
     <section id="booking" className="py-24 bg-[#050505]" data-testid="booking-section">
       <div className="container-punk">
@@ -504,117 +580,148 @@ const BookingSection = () => {
             Contrataciones
           </h2>
           <p className="font-mono text-[#888888] mb-12">
-            ¿Quieres que montemos el lío en tu pueblo, sala o festival? Escríbenos sin compromiso y nos vemos en los escenarios.
+            ¿Quieres que montemos el lío en tu pueblo, sala o festival? Escríbenos sin compromiso y
+            nos vemos en los escenarios.
           </p>
 
-          <form action="https://formspree.io/f/xzdnwlww" method="POST" className="space-y-8" data-testid="booking-form">
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Nombre *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="input-punk"
-                  placeholder="Tu nombre o empresa"
-                  data-testid="booking-name"
-                />
-              </div>
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  className="input-punk"
-                  placeholder="email@ejemplo.com"
-                  data-testid="booking-email"
-                />
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Teléfono *
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  required
-                  className="input-punk"
-                  placeholder="+34 600 000 000"
-                  data-testid="booking-phone"
-                />
-              </div>
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Tipo de Evento *
-                </label>
-                <input
-                  type="text"
-                  name="event_type"
-                  required
-                  className="input-punk"
-                  placeholder="Festival, Fiesta, Bar..."
-                  data-testid="booking-event-type"
-                />
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Fecha del Evento *
-                </label>
-                <input
-                  type="date"
-                  name="event_date"
-                  required
-                  className="input-punk"
-                  data-testid="booking-date"
-                />
-              </div>
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Ubicación *
-                </label>
-                <input
-                  type="text"
-                  name="location"
-                  required
-                  className="input-punk"
-                  placeholder="Ciudad, Sala, Dirección..."
-                  data-testid="booking-location"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                Mensaje Adicional
-              </label>
-              <textarea
-                name="message"
-                rows={4}
-                className="input-punk resize-none"
-                placeholder="Cuéntanos más sobre tu evento..."
-                data-testid="booking-message"
-              ></textarea>
-            </div>
-
-            <button
-              type="submit"
-              className="btn-punk-solid w-full md:w-auto disabled:opacity-50"
-              data-testid="booking-submit"
+          {status === "sent" ? (
+            <div
+              ref={successRef}
+              className="card-punk text-center py-12 px-6"
+              role="status"
+              data-testid="booking-success"
             >
-              Enviar Solicitud
-            </button>
-          </form>
+              <CheckCircle className="mx-auto mb-6 text-[#E11D48]" size={48} />
+              <p className="font-['Anton'] text-3xl uppercase mb-4">¡Recibido!</p>
+              <p className="font-mono text-[#888888] mb-8">
+                Gracias por escribirnos. Te contestamos lo antes posible.
+              </p>
+              <button
+                type="button"
+                onClick={() => setStatus("idle")}
+                className="btn-punk"
+                data-testid="booking-new"
+              >
+                Enviar otra solicitud
+              </button>
+            </div>
+          ) : (
+            <form
+              action="https://formspree.io/f/xzdnwlww"
+              method="POST"
+              onSubmit={handleSubmit}
+              className="space-y-8"
+              data-testid="booking-form"
+            >
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                    Nombre *
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    className="input-punk"
+                    placeholder="Tu nombre o empresa"
+                    data-testid="booking-name"
+                  />
+                </div>
+                <div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    required
+                    className="input-punk"
+                    placeholder="email@ejemplo.com"
+                    data-testid="booking-email"
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                    Teléfono *
+                  </label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    className="input-punk"
+                    placeholder="+34 600 000 000"
+                    data-testid="booking-phone"
+                  />
+                </div>
+                <div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                    Tipo de Evento *
+                  </label>
+                  <input
+                    type="text"
+                    name="event_type"
+                    required
+                    className="input-punk"
+                    placeholder="Festival, Fiesta, Bar..."
+                    data-testid="booking-event-type"
+                  />
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                    Fecha del Evento *
+                  </label>
+                  <input
+                    type="date"
+                    name="event_date"
+                    required
+                    className="input-punk"
+                    data-testid="booking-date"
+                  />
+                </div>
+                <div>
+                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                    Ubicación *
+                  </label>
+                  <input
+                    type="text"
+                    name="location"
+                    required
+                    className="input-punk"
+                    placeholder="Ciudad, Sala, Dirección..."
+                    data-testid="booking-location"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
+                  Mensaje Adicional
+                </label>
+                <textarea
+                  name="message"
+                  rows={4}
+                  className="input-punk resize-none"
+                  placeholder="Cuéntanos más sobre tu evento..."
+                  data-testid="booking-message"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="btn-punk-solid w-full md:w-auto disabled:opacity-50"
+                data-testid="booking-submit"
+              >
+                {status === "sending" ? "Enviando..." : "Enviar Solicitud"}
+              </button>
+            </form>
+          )}
         </div>
       </div>
     </section>
@@ -686,7 +793,7 @@ const ContactSection = ({ bandInfo }) => {
                 <Youtube size={32} className="text-[#E11D48]" />
                 <div>
                   <p className="font-['Anton'] text-xl uppercase">YouTube</p>
-                  <p className="font-mono text-sm text-[#888888]">@la_liga_musica</p>
+                  <p className="font-mono text-sm text-[#888888]">@laliga.ruralpride</p>
                 </div>
               </a>
 
@@ -714,23 +821,40 @@ const ContactSection = ({ bandInfo }) => {
 // Footer
 const Footer = ({ bandInfo }) => {
   return (
-    <footer className="py-8 bg-[#050505] border-t border-[#333333]">
+    <footer className="pt-8 pb-12 md:pb-8 bg-[#050505] border-t border-[#333333]">
       <div className="container-punk">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p
-            className="font-['Anton'] text-2xl text-[#E11D48]"
-          >
-            LA LIGA RURAL PRIDE
-          </p>
+          <p className="font-['Anton'] text-2xl text-[#E11D48]">LA LIGA RURAL PRIDE</p>
           <p className="font-mono text-sm text-[#888888]">
             © {new Date().getFullYear()} La Liga Rural Pride. Punk Rock Rural.
           </p>
-          <div className="flex gap-4">
-            <a href={bandInfo.social.instagram} target="_blank" rel="noopener noreferrer" className="text-[#888888] hover:text-[#E11D48] transition-colors">
+          <div className="flex gap-1 md:gap-4">
+            <a
+              href={bandInfo.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="p-3 md:p-0 text-[#888888] hover:text-[#E11D48] transition-colors"
+            >
               <Instagram size={20} />
             </a>
-            <a href={bandInfo.social.youtube} target="_blank" rel="noopener noreferrer" className="text-[#888888] hover:text-[#E11D48] transition-colors">
+            <a
+              href={bandInfo.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="p-3 md:p-0 text-[#888888] hover:text-[#E11D48] transition-colors"
+            >
               <Youtube size={20} />
+            </a>
+            <a
+              href={bandInfo.social.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Spotify"
+              className="p-3 md:p-0 text-[#888888] hover:text-[#E11D48] transition-colors"
+            >
+              <Music size={20} />
             </a>
           </div>
         </div>
@@ -764,8 +888,8 @@ function App() {
     },
     social: {
       instagram: "https://www.instagram.com/laliga.ruralpride/",
-      youtube: "https://www.youtube.com/@la_liga_musica",
-      spotify: "https://open.spotify.com/intl-es/artist/2AZZVSF8pNrYRqglStjnUA?si=rZ-NRIwVRJm6gNl9l3csgQ"
+      youtube: "https://www.youtube.com/@laliga.ruralpride",
+      spotify: "https://open.spotify.com/intl-es/artist/2mX5a8HKZsJHyIxJmYs7Nq"
     }
   });
 
