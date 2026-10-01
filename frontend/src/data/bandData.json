@@ -1,36 +1,36 @@
 {
   "members": [
     {
-      "name": "Alvaro \"Ciro\"",
+      "name": "Álvaro \"Ciro\" Sanz",
       "role": "Voz principal"
     },
     {
-      "name": "Manu",
-      "role": "Guitarra Rítmica"
-    },
-    {
       "name": "Sergio Pérez",
-      "role": "Guitarra Solista"
+      "role": "Guitarra y voz"
     },
     {
-      "name": "Juan \"Pancho\"",
+      "name": "Juan \"Pancho\" Gómez",
       "role": "Bajo"
     },
     {
-      "name": "Fernando",
-      "role": "Batería"
+      "name": "Manuel \"Manu\" García",
+      "role": "Guitarra"
     },
     {
-      "name": "Jorge Santos",
-      "role": "Vientos (Trompeta)"
+      "name": "Fernando López",
+      "role": "Batería y visuales"
+    },
+    {
+      "name": "Pablo \"Pablillo\" Villagrán",
+      "role": "Trombón y coros"
     },
     {
       "name": "Mario García",
-      "role": "Vientos (Saxo)"
+      "role": "Saxo tenor, dulzaina y coros"
     },
     {
-      "name": "Pablillo",
-      "role": "Vientos (Trombón)"
+      "name": "Jorge Santos",
+      "role": "Trompeta y coros"
     }
   ],
   "discography": [
@@ -43,7 +43,7 @@
     },
     {
       "title": "Vida de Circo",
-      "year": "2024",
+      "year": "2025",
       "cover": "/images/vidacirco.jpg",
       "description": "Segundo tema propio de La Liga Rural Pride, directo y potente.",
       "spotifyEmbed": ""
@@ -52,7 +52,7 @@
       "title": "Próximo EP",
       "year": "2026",
       "cover": "/images/EP.jpg",
-      "description": "Actualmente estamos trabajando en la composición y grabación de lo que será nuestro primer EP de estudio.",
+      "description": "Nuestro primer EP: Corazón de Piedra Dura, Aire Nuevo, De Lunes a Viernes, Vida de Circo y Resurrección. Grabado y mezclado en OVNI Estudio. Sale el 5 de octubre de 2026 en Spotify y todas las plataformas.",
       "spotifyEmbed": ""
     }
   ],
@@ -81,7 +81,7 @@
   "gigs": [
     {
       "date": "2026-11-07T22:00:00.000Z",
-      "venue": "Presentación EP - Discoteca Sanbar",
+      "venue": "Presentación EP - Discoteca SanBar (con Alarmados)",
       "city": "Navas de Oro, Segovia",
       "status": "confirmed"
     }

@@ -14,6 +14,7 @@ import {
   Users,
   Calendar,
   CheckCircle,
+  Download,
   ShoppingBag,
   Menu,
   X
@@ -247,8 +248,7 @@ const BioSection = ({ bandInfo, members }) => {
             <p className="font-mono text-[#eeeeee] leading-relaxed mb-6">{bandInfo.bio}</p>
             <p className="font-mono text-[#888888] leading-relaxed mb-8">{bandInfo.bioExtended}</p>
             <p className="handwritten text-xl">
-              "Tras giras por Segovia, Madrid y Salamanca, consideramos que tenemos algo valioso que
-              ofrecer"
+              "El público es un componente más de la banda"
             </p>
           </div>
 
@@ -579,10 +579,22 @@ const BookingSection = () => {
             <Calendar className="inline mr-3 text-[#E11D48]" size={40} />
             Contrataciones
           </h2>
-          <p className="font-mono text-[#888888] mb-12">
+          <p className="font-mono text-[#888888] mb-8">
             ¿Quieres que montemos el lío en tu pueblo, sala o festival? Escríbenos sin compromiso y
             nos vemos en los escenarios.
           </p>
+
+          <a
+            href={process.env.PUBLIC_URL + "/dossier-la-liga-rural-pride-2026.pdf"}
+            download="Dossier La Liga Rural Pride 2026.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-punk inline-flex items-center gap-3 mb-12"
+            data-testid="booking-dossier"
+          >
+            <Download size={20} />
+            Descargar dossier
+          </a>
 
           {status === "sent" ? (
             <div
@@ -880,8 +892,8 @@ function App() {
     subtitle: "Punk Rock Rural",
     year: "2022",
     location: "Segovia, España",
-    bio: `Nacimos en 2022 en la zona segoviana como un proyecto entre colegas. Somos ocho músicos forjados en el directo, provenientes de bandas como La Banda Olivetti, Los Lebreles, DeKanteo Peligro de Fusión y Los Skull.`,
-    bioExtended: `Durante este tiempo nos hemos consolidado con un directo arrollador en nuestra zona, con un repertorio variado que incluye versiones de bandas como La Fuga, Ska-p, La Pulquería, Kaotiko, La Raíz, Desakato y La Polla Records. En 2024 nos encerramos para empezar a grabar nuestros propios trallazos.`,
+    bio: `Somos La Liga Rural Pride, una banda de punk rock español nacida en 2022 en la tierra de Pinares de Segovia. Venimos de grupos como La Banda Olivetti, Los Lebreles, DeKanteo Peligro de Fusión, Los Skull, Hijos de Overón, Los Pichente, Pijos Powers o Charanga Jaleo, y nos une una potente sección de vientos que da identidad a nuestro directo.`,
+    bioExtended: `Empezamos versionando a Ska-P, La Raíz, La Polla Records o Desakato, y en 2024 dimos el salto a temas propios con Aire Nuevo y Vida de Circo. Tras tocar por los pueblos de Segovia y en ciudades como Madrid, Cáceres o Salamanca, en octubre de 2026 publicamos nuestro primer EP.`,
     contact: {
       email: "infolaligamusica@gmail.com",
       phone: "+34 662 19 11 53"
