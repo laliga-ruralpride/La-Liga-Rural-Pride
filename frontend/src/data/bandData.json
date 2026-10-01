@@ -33,6 +33,12 @@
       "role": "Trompeta y coros"
     }
   ],
+  "featuredSingle": {
+    "title": "De Lunes a Viernes",
+    "label": "Nuevo single · Adelanto del primer EP",
+    "youtubeId": "DQ9vMUKRttY",
+    "description": "El primer adelanto de nuestro EP, ya con videoclip. Dale al play y súbele el volumen."
+  },
   "discography": [
     {
       "title": "Aire Nuevo",
@@ -46,13 +52,6 @@
       "year": "2025",
       "cover": "/images/vidacirco.jpg",
       "description": "Segundo tema propio de La Liga Rural Pride, directo y potente.",
-      "spotifyEmbed": ""
-    },
-    {
-      "title": "Próximo EP",
-      "year": "2026",
-      "cover": "/images/EP.jpg",
-      "description": "Nuestro primer EP: Corazón de Piedra Dura, Aire Nuevo, De Lunes a Viernes, Vida de Circo y Resurrección. Grabado y mezclado en OVNI Estudio. Sale el 5 de octubre de 2026 en Spotify y todas las plataformas.",
       "spotifyEmbed": ""
     }
   ],

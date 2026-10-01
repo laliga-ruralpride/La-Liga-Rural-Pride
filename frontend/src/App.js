@@ -14,12 +14,14 @@ import {
   Users,
   Calendar,
   CheckCircle,
-  Download,
+  // Download, // icono del botón del dossier (oculto hasta el 5 de octubre)
   ShoppingBag,
   Menu,
   X
 } from "lucide-react";
 import bandData from "./data/bandData.json";
+// EP completo: descomentar el 5 de octubre de 2026 (y el bloque "EP completo" de Discografía)
+// import epData from "./data/ep.json";
 
 // Cookie Banner
 const CookieBanner = () => {
@@ -286,16 +288,106 @@ const BioSection = ({ bandInfo, members }) => {
 };
 
 // Discography Section
-const DiscographySection = ({ discography, bandInfo }) => {
+const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
   return (
     <section id="discography" className="py-24 bg-[#0a0a0a]" data-testid="discography-section">
       <div className="container-punk">
         <h2 className="section-title text-[#eeeeee] mb-4">Discografía</h2>
         <p className="font-mono text-[#888888] mb-16 max-w-xl">
-          Nuestros lanzamientos oficiales. Próximamente: primer EP.
+          Nuestros lanzamientos oficiales.
         </p>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/*
+          EP completo con la lista de temas: OCULTO hasta el lanzamiento (5 de octubre de 2026).
+          Para mostrarlo, descomentar este bloque y el import de epData (datos en data/ep.json)
+          y quitar, si se quiere, el bloque del single "De Lunes a Viernes" de abajo.
+
+        {ep && (
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-24" data-testid="ep-featured">
+            <img
+              src={process.env.PUBLIC_URL + ep.cover}
+              alt={`Portada del EP ${ep.title}`}
+              loading="lazy"
+              className="w-full max-w-md mx-auto lg:max-w-none aspect-square object-cover border border-[#333333]"
+            />
+            <div>
+              <p className="font-mono text-xs uppercase tracking-widest text-[#E11D48] mb-2">
+                {ep.label}
+              </p>
+              <h3 className="font-['Anton'] text-4xl md:text-5xl uppercase mb-8">{ep.title}</h3>
+
+              <ol className="border-t border-[#333333] mb-8">
+                {ep.tracks.map((track, index) => (
+                  <li
+                    key={index}
+                    className="flex flex-col sm:flex-row sm:items-baseline gap-x-4 gap-y-1 py-3 border-b border-[#333333]"
+                    data-testid={`ep-track-${index}`}
+                  >
+                    <span className="flex items-baseline gap-4">
+                      <span className="font-['Anton'] text-xl text-[#E11D48] w-8">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-['Anton'] text-2xl uppercase">{track.title}</span>
+                    </span>
+                    <span className="font-mono text-xs text-[#888888] pl-12 sm:pl-0 sm:ml-auto sm:text-right">
+                      {track.note}
+                    </span>
+                  </li>
+                ))}
+              </ol>
+
+              <div className="font-mono text-sm space-y-2">
+                <p className="text-[#eeeeee]">
+                  <span className="text-[#E11D48] uppercase">Lanzamiento:</span> {ep.release} ·
+                  Spotify y todas las plataformas
+                </p>
+                <p className="text-[#eeeeee]">
+                  <span className="text-[#E11D48] uppercase">Presentación:</span> {ep.presentation}
+                </p>
+                <p className="text-[#888888] text-xs pt-2">{ep.credits}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        */}
+
+        {/* Single destacado con videoclip */}
+        {featuredSingle && (
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-24" data-testid="single-featured">
+            <div className="aspect-video w-full border border-[#333333] bg-black">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${featuredSingle.youtubeId}`}
+                title={`Videoclip ${featuredSingle.title}`}
+                className="w-full h-full"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div>
+              <p className="font-mono text-xs uppercase tracking-widest text-[#E11D48] mb-2">
+                {featuredSingle.label}
+              </p>
+              <h3 className="font-['Anton'] text-4xl md:text-5xl uppercase mb-6">
+                {featuredSingle.title}
+              </h3>
+              <p className="font-mono text-[#888888] mb-8">{featuredSingle.description}</p>
+              <a
+                href={`https://www.youtube.com/watch?v=${featuredSingle.youtubeId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-punk inline-flex items-center gap-2"
+                data-testid="single-youtube-link"
+              >
+                <Youtube size={18} /> Ver en YouTube
+              </a>
+            </div>
+          </div>
+        )}
+
+        <h3 className="font-['Anton'] text-3xl uppercase mb-8">Singles</h3>
+        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl">
           {discography.map((album, index) => (
             <div
               key={index}
@@ -579,10 +671,16 @@ const BookingSection = () => {
             <Calendar className="inline mr-3 text-[#E11D48]" size={40} />
             Contrataciones
           </h2>
-          <p className="font-mono text-[#888888] mb-8">
+          <p className="font-mono text-[#888888] mb-12">
             ¿Quieres que montemos el lío en tu pueblo, sala o festival? Escríbenos sin compromiso y
             nos vemos en los escenarios.
           </p>
+
+          {/*
+            Botón del dossier: OCULTO hasta el lanzamiento del EP (5 de octubre de 2026),
+            porque el PDF incluye la lista de temas. Para mostrarlo: descomentar este bloque
+            y el icono Download del import, devolver el PDF de dossier/ a frontend/public/
+            y cambiar el mb-12 del párrafo de arriba por mb-8.
 
           <a
             href={process.env.PUBLIC_URL + "/dossier-la-liga-rural-pride-2026.pdf"}
@@ -595,6 +693,7 @@ const BookingSection = () => {
             <Download size={20} />
             Descargar dossier
           </a>
+          */}
 
           {status === "sent" ? (
             <div
@@ -882,6 +981,8 @@ function App() {
 
   // Data states
   const [members] = useState(bandData.members || []);
+  const [ep] = useState(null); // useState(epData) a partir del 5 de octubre
+  const [featuredSingle] = useState(bandData.featuredSingle || null);
   const [discography] = useState(bandData.discography || []);
   const [merch] = useState(bandData.merch || []);
   const [gigs] = useState(bandData.gigs || []);
@@ -947,7 +1048,12 @@ function App() {
       <main>
         <HeroSection bandInfo={bandInfo} onNavigate={handleNavigate} />
         <BioSection bandInfo={bandInfo} members={members} />
-        <DiscographySection discography={discography} bandInfo={bandInfo} />
+        <DiscographySection
+          ep={ep}
+          featuredSingle={featuredSingle}
+          discography={discography}
+          bandInfo={bandInfo}
+        />
         <GigsSection gigs={gigs} />
         <GallerySection />
         <BookingSection />
