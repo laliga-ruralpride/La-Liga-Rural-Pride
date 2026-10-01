@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/La-Liga-Rural-Pride/static/css/main.28eebfe5.css",
-    "main.js": "/La-Liga-Rural-Pride/static/js/main.ca5b0579.js",
+    "main.js": "/La-Liga-Rural-Pride/static/js/main.d694be2e.js",
     "index.html": "/La-Liga-Rural-Pride/index.html"
   },
   "entrypoints": [
     "static/css/main.28eebfe5.css",
-    "static/js/main.ca5b0579.js"
+    "static/js/main.d694be2e.js"
   ]
 }
