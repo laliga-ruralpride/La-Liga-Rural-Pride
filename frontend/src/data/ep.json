@@ -1,0 +1,30 @@
+{
+  "title": "La Liga Rural Pride",
+  "label": "Primer EP",
+  "cover": "/images/DeLunesAViernes.jpg",
+  "tracks": [
+    {
+      "title": "Corazón de Piedra Dura",
+      "note": "Tema inédito"
+    },
+    {
+      "title": "Aire Nuevo",
+      "note": "Nueva grabación · single original de 2024"
+    },
+    {
+      "title": "De Lunes a Viernes",
+      "note": "Adelanto del EP · con videoclip"
+    },
+    {
+      "title": "Vida de Circo",
+      "note": "Nueva grabación · single original de 2025"
+    },
+    {
+      "title": "Resurrección",
+      "note": "Tema inédito"
+    }
+  ],
+  "release": "5 de octubre de 2026",
+  "presentation": "Sábado 7 de noviembre · Discoteca SanBar, Navas de Oro (Segovia) · con Alarmados",
+  "credits": "Grabado y mezclado en OVNI Estudio por Pablo Senator y Andrey Fomchenko"
+}

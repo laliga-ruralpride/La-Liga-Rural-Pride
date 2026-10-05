@@ -1,5 +1,11 @@
 # Tareas pendientes — Web La Liga Rural Pride
 
+## EP (publicado el 5 de octubre de 2026)
+
+- [ ] **Reproductor de Spotify del EP** (cuando esté el enlace).
+- [ ] **Decidir si se mantiene el bloque del single "De Lunes a Viernes"** con el videoclip
+  (de momento se mantiene, debajo del EP).
+
 ## Por hacer
 
 - [ ] **Reproductor de Spotify en cada álbum**
@@ -13,8 +19,9 @@
   (en Biografía o en Contrataciones).
 
 - [x] **Dossier de prensa descargable**
-  Botón "Descargar dossier" en Contrataciones → `frontend/public/dossier-la-liga-rural-pride-2026.pdf`.
-  Para actualizarlo, sustituir ese archivo manteniendo el mismo nombre.
+  Botón "Descargar dossier" en Contrataciones.
+  Para actualizarlo, sustituir `frontend/public/dossier-la-liga-rural-pride-2026.pdf`
+  manteniendo el mismo nombre.
 
 ## Comprobaciones
 

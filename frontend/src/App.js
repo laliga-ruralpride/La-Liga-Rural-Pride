@@ -14,14 +14,13 @@ import {
   Users,
   Calendar,
   CheckCircle,
-  // Download, // icono del botón del dossier (oculto hasta el 5 de octubre)
+  Download,
   ShoppingBag,
   Menu,
   X
 } from "lucide-react";
 import bandData from "./data/bandData.json";
-// EP completo: descomentar el 5 de octubre de 2026 (y el bloque "EP completo" de Discografía)
-// import epData from "./data/ep.json";
+import epData from "./data/ep.json";
 
 // Cookie Banner
 const CookieBanner = () => {
@@ -297,11 +296,7 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
           Nuestros lanzamientos oficiales.
         </p>
 
-        {/*
-          EP completo con la lista de temas: OCULTO hasta el lanzamiento (5 de octubre de 2026).
-          Para mostrarlo, descomentar este bloque y el import de epData (datos en data/ep.json)
-          y quitar, si se quiere, el bloque del single "De Lunes a Viernes" de abajo.
-
+        {/* EP completo */}
         {ep && (
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-24" data-testid="ep-featured">
             <img
@@ -349,7 +344,6 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
             </div>
           </div>
         )}
-        */}
 
         {/* Single destacado con videoclip */}
         {featuredSingle && (
@@ -671,17 +665,12 @@ const BookingSection = () => {
             <Calendar className="inline mr-3 text-[#E11D48]" size={40} />
             Contrataciones
           </h2>
-          <p className="font-mono text-[#888888] mb-12">
+          <p className="font-mono text-[#888888] mb-8">
             ¿Quieres que montemos el lío en tu pueblo, sala o festival? Escríbenos sin compromiso y
             nos vemos en los escenarios.
           </p>
 
-          {/*
-            Botón del dossier: OCULTO hasta el lanzamiento del EP (5 de octubre de 2026),
-            porque el PDF incluye la lista de temas. Para mostrarlo: descomentar este bloque
-            y el icono Download del import, devolver el PDF de dossier/ a frontend/public/
-            y cambiar el mb-12 del párrafo de arriba por mb-8.
-
+          {/* Dossier de prensa */}
           <a
             href={process.env.PUBLIC_URL + "/dossier-la-liga-rural-pride-2026.pdf"}
             download="Dossier La Liga Rural Pride 2026.pdf"
@@ -693,7 +682,6 @@ const BookingSection = () => {
             <Download size={20} />
             Descargar dossier
           </a>
-          */}
 
           {status === "sent" ? (
             <div
@@ -981,7 +969,7 @@ function App() {
 
   // Data states
   const [members] = useState(bandData.members || []);
-  const [ep] = useState(null); // useState(epData) a partir del 5 de octubre
+  const [ep] = useState(epData);
   const [featuredSingle] = useState(bandData.featuredSingle || null);
   const [discography] = useState(bandData.discography || []);
   const [merch] = useState(bandData.merch || []);
