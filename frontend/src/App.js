@@ -341,6 +341,21 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
                 </p>
                 <p className="text-[#888888] text-xs pt-2">{ep.credits}</p>
               </div>
+
+              {ep.spotifyEmbed && (
+                <div className="spotify-embed mt-8" data-testid="ep-spotify">
+                  <iframe
+                    src={ep.spotifyEmbed}
+                    width="100%"
+                    height="152"
+                    frameBorder="0"
+                    allowFullScreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"
+                    title={`Spotify ${ep.title}`}
+                  ></iframe>
+                </div>
+              )}
             </div>
           </div>
         )}
