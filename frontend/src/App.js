@@ -673,7 +673,7 @@ const BookingSection = () => {
           {/* Dossier de prensa */}
           <a
             href={process.env.PUBLIC_URL + "/dossier-la-liga-rural-pride-2026.pdf"}
-            download="Dossier La Liga Rural Pride 2026.pdf"
+            download="Dossier La Liga Rural Pride.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-punk inline-flex items-center gap-3 mb-12"
