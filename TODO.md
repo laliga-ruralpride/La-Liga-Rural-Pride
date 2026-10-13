@@ -15,13 +15,13 @@ Spotify for Artists ya concedido. Correo oficial de contacto: **infolaligamusica
 
 Pendiente (editar en cada plataforma, requiere login de admin):
 
-- [ ] **(PRIORITARIO) Spotify → Redes sociales**: cambiar el nombre que aparece como "La Liga"
+- [x] **Spotify → Redes sociales** (hecho el 14 de octubre): cambiar el nombre que aparece como "La Liga"
   por "La Liga Rural Pride". Si no se actualiza, el cambio definitivo va en la
   distribuidora (DistroKid/RouteNote/etc.) y tarda unos días.
 - [ ] **YouTube**: añadir enlace a la web oficial
   (Studio → Personalización → Info básica → Enlaces). Creemos que ya están
   todos (14 de octubre); falta comprobarlo.
-- [ ] **Spotify for Artists**: añadir enlaces sociales (Instagram, YouTube).
+- [x] **Spotify for Artists**: añadir enlaces sociales (Instagram, YouTube). Hecho el 14 de octubre.
 - [ ] **Linktree**: el botón "Web" apunta a `http://`; cambiarlo a `https://`.
 - [ ] **Search Console**: enviar el sitemap (`sitemap.xml`) y pedir indexación
   de la URL. Revisar la pestaña "Rendimiento" a los pocos días.
