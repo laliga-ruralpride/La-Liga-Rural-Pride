@@ -22,7 +22,9 @@ Pendiente (editar en cada plataforma, requiere login de admin):
   Decidido el 14 de octubre no añadir el enlace a la web.
 - [x] **Spotify for Artists**: añadir enlaces sociales (Instagram, YouTube). Hecho el 14 de octubre.
 - [ ] **Linktree**: el botón "Web" apunta a `http://`; cambiarlo a `https://`.
-- [ ] **Search Console**: enviar el sitemap (`sitemap.xml`) y pedir indexación
-  de la URL. Revisar la pestaña "Rendimiento" a los pocos días.
+- [ ] **Search Console** (cuenta de Google `/u/2/` del Chrome): la web ya está
+  indexada y aparece al buscar "la liga rural pride" (posición media 3,4) (14 de octubre). Sitemap
+  reenviado el 14 de octubre; seguía en "No se ha podido obtener" aunque el
+  archivo es accesible. Revisar en unos días que pase a "Correcto".
 - [ ] (Opcional) Valorar perfiles en Bandcamp / Apple Music para reforzar
   la identidad de banda.
