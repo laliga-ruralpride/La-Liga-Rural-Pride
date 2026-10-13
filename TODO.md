@@ -19,8 +19,9 @@ Pendiente (editar en cada plataforma, requiere login de admin):
   por "La Liga Rural Pride". Si no se actualiza, el cambio definitivo va en la
   distribuidora (DistroKid/RouteNote/etc.) y tarda unos días.
 - [ ] **YouTube**: añadir enlace a la web oficial
-  (Studio → Personalización → Info básica → Enlaces). Creemos que ya están
-  todos (14 de octubre); falta comprobarlo.
+  (Studio → Personalización → Info básica → Enlaces). Comprobado el 14 de octubre:
+  solo tiene Instagram, Spotify y Concierto EP; falta la web
+  (https://laliga-ruralpride.github.io/La-Liga-Rural-Pride/).
 - [x] **Spotify for Artists**: añadir enlaces sociales (Instagram, YouTube). Hecho el 14 de octubre.
 - [ ] **Linktree**: el botón "Web" apunta a `http://`; cambiarlo a `https://`.
 - [ ] **Search Console**: enviar el sitemap (`sitemap.xml`) y pedir indexación
