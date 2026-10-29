@@ -219,11 +219,26 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 1rem;
     color: #eeeeee;
+    border-radius: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    /* Calendario y controles nativos en oscuro (el icono de la fecha se ve) */
+    color-scheme: dark;
     transition: border-color 0.3s ease;
 }
 
+/* En iOS el campo de fecha vacío se encoge: igualar altura con el resto */
+.input-punk[type="date"] {
+    min-height: 3.5rem;
+}
+
 .input-punk::placeholder {
-    color: #666666;
+    color: #7a7a7a;
+}
+
+/* Marcar en rojo lo que falta o está mal, solo después de que el usuario lo toque */
+.input-punk:user-invalid {
+    border-color: #E11D48;
 }
 
 .input-punk:focus {

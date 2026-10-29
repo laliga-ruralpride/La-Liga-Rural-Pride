@@ -636,10 +636,30 @@ const GallerySection = () => {
 };
 
 // Booking Section
-const BookingSection = () => {
-  // idle | sending | sent
+const BookingField = ({ id, label, required, children }) => (
+  <div>
+    <label
+      htmlFor={id}
+      className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block"
+    >
+      {label}
+      {required && (
+        <span className="text-[#E11D48]" aria-hidden="true">
+          {" "}*
+        </span>
+      )}
+    </label>
+    {children}
+  </div>
+);
+
+const BookingSection = ({ bandInfo }) => {
+  // idle | sending | sent | error
   const [status, setStatus] = useState("idle");
   const successRef = useRef(null);
+
+  // No tiene sentido pedir un concierto para una fecha pasada
+  const today = new Date().toLocaleDateString("sv-SE");
 
   // El aviso es mucho más corto que el formulario: llevarlo a la vista
   useEffect(() => {
@@ -667,7 +687,7 @@ const BookingSection = () => {
       toast.dismiss();
       toast.success("¡Solicitud enviada! Te contestamos pronto.");
     } catch (error) {
-      setStatus("idle");
+      setStatus("error");
       toast.error("No se ha podido enviar. Inténtalo de nuevo o escríbenos por email.");
     }
   };
@@ -727,113 +747,137 @@ const BookingSection = () => {
               className="space-y-8"
               data-testid="booking-form"
             >
+              {/* Asunto del correo que llega y campo trampa contra el spam */}
+              <input type="hidden" name="_subject" value="Nueva solicitud de contratación (web)" />
+              <input
+                type="text"
+                name="_gotcha"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
+
               <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                    Nombre *
-                  </label>
+                <BookingField id="booking-name" label="Nombre" required>
                   <input
+                    id="booking-name"
                     type="text"
                     name="name"
                     required
+                    autoComplete="name"
+                    maxLength={100}
                     className="input-punk"
                     placeholder="Tu nombre o empresa"
                     data-testid="booking-name"
                   />
-                </div>
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                    Email *
-                  </label>
+                </BookingField>
+                <BookingField id="booking-email" label="Email" required>
                   <input
+                    id="booking-email"
                     type="email"
                     name="email"
                     required
+                    autoComplete="email"
+                    inputMode="email"
                     className="input-punk"
                     placeholder="email@ejemplo.com"
                     data-testid="booking-email"
                   />
-                </div>
+                </BookingField>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                    Teléfono *
-                  </label>
+                <BookingField id="booking-phone" label="Teléfono" required>
                   <input
+                    id="booking-phone"
                     type="tel"
                     name="phone"
                     required
+                    autoComplete="tel"
+                    inputMode="tel"
+                    pattern="\+?[0-9 ]{9,20}"
+                    title="Al menos 9 cifras. Puedes usar espacios y el prefijo +34."
                     className="input-punk"
                     placeholder="+34 600 000 000"
                     data-testid="booking-phone"
                   />
-                </div>
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                    Tipo de Evento *
-                  </label>
+                </BookingField>
+                <BookingField id="booking-event-type" label="Tipo de evento" required>
                   <input
+                    id="booking-event-type"
                     type="text"
                     name="event_type"
                     required
+                    maxLength={100}
                     className="input-punk"
-                    placeholder="Festival, Fiesta, Bar..."
+                    placeholder="Fiestas, festival, sala, bar..."
                     data-testid="booking-event-type"
                   />
-                </div>
+                </BookingField>
               </div>
 
               <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                    Fecha del Evento *
-                  </label>
+                <BookingField id="booking-date" label="Fecha del evento" required>
                   <input
+                    id="booking-date"
                     type="date"
                     name="event_date"
                     required
+                    min={today}
                     className="input-punk"
                     data-testid="booking-date"
                   />
-                </div>
-                <div>
-                  <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                    Ubicación *
-                  </label>
+                </BookingField>
+                <BookingField id="booking-location" label="Ubicación" required>
                   <input
+                    id="booking-location"
                     type="text"
                     name="location"
                     required
+                    maxLength={150}
                     className="input-punk"
-                    placeholder="Ciudad, Sala, Dirección..."
+                    placeholder="Pueblo, sala o dirección..."
                     data-testid="booking-location"
                   />
-                </div>
+                </BookingField>
               </div>
 
-              <div>
-                <label className="font-mono text-xs uppercase tracking-widest text-[#888888] mb-2 block">
-                  Mensaje Adicional
-                </label>
+              <BookingField id="booking-message" label="Mensaje adicional">
                 <textarea
+                  id="booking-message"
                   name="message"
                   rows={4}
+                  maxLength={2000}
                   className="input-punk resize-none"
-                  placeholder="Cuéntanos más sobre tu evento..."
+                  placeholder="Horario, duración, si hay equipo de sonido..."
                   data-testid="booking-message"
                 ></textarea>
-              </div>
+              </BookingField>
 
-              <button
-                type="submit"
-                disabled={status === "sending"}
-                className="btn-punk-solid w-full md:w-auto disabled:opacity-50"
-                data-testid="booking-submit"
-              >
-                {status === "sending" ? "Enviando..." : "Enviar Solicitud"}
-              </button>
+              {status === "error" && (
+                <p className="font-mono text-sm text-[#E11D48]" role="alert" data-testid="booking-error">
+                  No se ha podido enviar la solicitud. Inténtalo de nuevo o escríbenos a{" "}
+                  <a href={`mailto:${bandInfo.contact.email}`} className="underline">
+                    {bandInfo.contact.email}
+                  </a>
+                  .
+                </p>
+              )}
+
+              <div className="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+                <button
+                  type="submit"
+                  disabled={status === "sending"}
+                  className="btn-punk-solid w-full md:w-auto disabled:opacity-50"
+                  data-testid="booking-submit"
+                >
+                  {status === "sending" ? "Enviando..." : "Enviar Solicitud"}
+                </button>
+                <p className="font-mono text-xs text-[#888888]">
+                  <span className="text-[#E11D48]">*</span> Campos obligatorios
+                </p>
+              </div>
             </form>
           )}
         </div>
@@ -977,6 +1021,13 @@ const Footer = ({ bandInfo }) => {
   );
 };
 
+// Un concierto deja de anunciarse al día siguiente de celebrarse
+const isUpcoming = (gig) => {
+  const endOfDay = new Date(gig.date);
+  endOfDay.setHours(23, 59, 59, 999);
+  return endOfDay >= new Date();
+};
+
 // Main App
 function App() {
   const [activeSection, setActiveSection] = useState("hero");
@@ -988,7 +1039,7 @@ function App() {
   const [featuredSingle] = useState(bandData.featuredSingle || null);
   const [discography] = useState(bandData.discography || []);
   const [merch] = useState(bandData.merch || []);
-  const [gigs] = useState(bandData.gigs || []);
+  const [gigs] = useState((bandData.gigs || []).filter(isUpcoming));
 
   // Band Info
   const [bandInfo] = useState({
@@ -1059,7 +1110,7 @@ function App() {
         />
         <GigsSection gigs={gigs} />
         <GallerySection />
-        <BookingSection />
+        <BookingSection bandInfo={bandInfo} />
         <ContactSection bandInfo={bandInfo} />
       </main>
       <Footer bandInfo={bandInfo} />
