@@ -41,15 +41,15 @@ const CookieBanner = () => {
   if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-[#333333] p-4 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-2xl">
-      <p className="text-[#eeeeee] text-sm md:text-base font-mono">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-[#333333] p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 shadow-2xl">
+      <p className="text-[#eeeeee] text-xs sm:text-sm md:text-base font-mono">
         Utilizamos cookies (las justas y necesarias) para que la web funcione correctamente y
         podamos organizar mejores conciertos. Si te quedas, entendemos que te parece bien.
       </p>
       <div className="flex gap-4 shrink-0">
         <button
           onClick={acceptCookies}
-          className="bg-[#E11D48] text-[#eeeeee] font-['Anton'] tracking-wider px-6 py-2 uppercase hover:bg-[#b01335] transition-colors"
+          className="bg-[#E11D48] text-[#eeeeee] font-['Anton'] tracking-wider px-5 py-1.5 sm:px-6 sm:py-2 uppercase hover:bg-[#b01335] transition-colors"
         >
           ¡A darle caña!
         </button>
@@ -117,14 +117,14 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
               e.preventDefault();
               onNavigate("hero");
             }}
-            className="font-['Anton'] text-2xl tracking-tight text-[#E11D48]"
+            className="font-['Anton'] text-2xl tracking-tight text-[#E11D48] whitespace-nowrap shrink-0"
             data-testid="nav-logo"
           >
             LA LIGA RURAL PRIDE
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {navItems.slice(1).map((item) => (
               <a
                 key={item.id}
@@ -143,7 +143,7 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-[#eeeeee] p-2.5 -mr-2.5"
+            className="lg:hidden text-[#eeeeee] p-2.5 -mr-2.5"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             data-testid="mobile-menu-toggle"
             aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
@@ -155,7 +155,7 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-[#333333]">
+          <div className="lg:hidden py-4 border-t border-[#333333]">
             {navItems.map((item) => (
               <a
                 key={item.id}
@@ -473,7 +473,7 @@ const GigsSection = ({ gigs }) => {
               >
                 <div className="flex flex-col md:flex-row items-center gap-8 w-full">
                   <div className="text-center md:text-left min-w-[120px]">
-                    <p className="font-['Anton'] text-3xl text-[#E11D48]">
+                    <p className="font-['Anton'] text-3xl uppercase text-[#E11D48]">
                       {new Date(gig.date).toLocaleDateString("es-ES", {
                         day: "2-digit",
                         month: "short"

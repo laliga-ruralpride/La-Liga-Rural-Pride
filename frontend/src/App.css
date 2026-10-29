@@ -36,12 +36,20 @@
 /* Hero Section */
 .hero-title {
     font-family: 'Anton', sans-serif;
-    font-size: clamp(4rem, 15vw, 12rem);
+    font-size: clamp(3.5rem, 15vw, 12rem);
     text-transform: uppercase;
-    letter-spacing: -0.05em;
-    line-height: 0.85;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
     color: #eeeeee;
     text-shadow: 4px 4px 0px #E11D48;
+    /* Reparte las palabras en líneas parecidas: "LA LIGA / RURAL PRIDE" */
+    text-wrap: balance;
+}
+
+@media (max-width: 767px) {
+    .hero-title {
+        text-shadow: 3px 3px 0px #E11D48;
+    }
 }
 
 .hero-subtitle {
@@ -70,6 +78,15 @@
     width: 10px;
     height: 10px;
     background: #E11D48;
+}
+
+/* En móvil el margen lateral es menor: acercar el cuadradito al título */
+@media (max-width: 767px) {
+    .section-title::before {
+        left: -14px;
+        width: 8px;
+        height: 8px;
+    }
 }
 
 /* Buttons */
@@ -137,6 +154,11 @@
 .card-punk:hover {
     border-color: #E11D48;
     transform: translateY(-4px);
+}
+
+/* La portada de los singles llega hasta el borde de la tarjeta */
+.card-punk.album-card {
+    padding: 0;
 }
 
 /* Album covers */
@@ -233,10 +255,6 @@
 @media (max-width: 767px) {
     .nav-link.nav-link-mobile {
         font-size: 1rem;
-    }
-
-    .card-punk.album-card {
-        padding: 0;
     }
 
     .card-punk.member-card {
