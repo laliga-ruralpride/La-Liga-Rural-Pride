@@ -43,8 +43,8 @@ const CookieBanner = () => {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#050505] border-t border-[#333333] p-3 sm:p-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 shadow-2xl">
       <p className="text-[#eeeeee] text-xs sm:text-sm md:text-base font-mono">
-        Utilizamos cookies (las justas y necesarias) para que la web funcione correctamente y
-        podamos organizar mejores conciertos. Si te quedas, entendemos que te parece bien.
+        Usamos las cookies justas para que la web funcione. Si te quedas, entendemos que te
+        parece bien.
       </p>
       <div className="flex gap-4 shrink-0">
         <button
@@ -921,7 +921,7 @@ const ContactSection = ({ bandInfo }) => {
                 <Music size={32} className="text-[#E11D48]" />
                 <div>
                   <p className="font-['Anton'] text-xl uppercase">Spotify</p>
-                  <p className="font-mono text-sm text-[#888888]">La Liga</p>
+                  <p className="font-mono text-sm text-[#888888]">La Liga Rural Pride</p>
                 </div>
               </a>
             </div>
