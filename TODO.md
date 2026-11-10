@@ -25,6 +25,8 @@ Pendiente (editar en cada plataforma, requiere login de admin):
 - [ ] **Search Console** (cuenta de Google `/u/2/` del Chrome): la web ya está
   indexada y aparece al buscar "la liga rural pride" (posición media 3,4) (14 de octubre). Sitemap
   reenviado el 14 de octubre; seguía en "No se ha podido obtener" aunque el
-  archivo es accesible. Revisar en unos días que pase a "Correcto".
+  archivo es accesible. El 10 de noviembre se comprobó que el sitemap es correcto
+  (URL bien, XML válido) y se reenvió. **Revisar hacia el 14-17 de noviembre** que
+  pase a "Correcto"; si sigue en rojo, usar "Inspección de URLs" con la URL del sitemap.
 - [ ] (Opcional) Valorar perfiles en Bandcamp / Apple Music para reforzar
   la identidad de banda.
