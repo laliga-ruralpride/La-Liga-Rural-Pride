@@ -3,7 +3,7 @@
 - [ ] **Bloque del single "De Lunes a Viernes"** con el videoclip
   Se mantiene igual, debajo del EP (decidido el 8 de octubre, confirmado el 14 de octubre).
 
-- [ ] **Vídeo en directo**
+- [ ] **Vídeo en directo** (aparcado el 10 de noviembre)
   Cuando esté grabado, subirlo a YouTube e incrustarlo en la web
   (en Biografía o en Contrataciones).
 
@@ -21,7 +21,7 @@ Pendiente (editar en cada plataforma, requiere login de admin):
 - [x] **YouTube**: enlaces del canal correctos (Instagram, Spotify y Concierto EP).
   Decidido el 14 de octubre no añadir el enlace a la web.
 - [x] **Spotify for Artists**: añadir enlaces sociales (Instagram, YouTube). Hecho el 14 de octubre.
-- [ ] **Linktree**: el botón "Web" apunta a `http://`; cambiarlo a `https://`.
+- [x] **Linktree**: el botón "Web" ya apunta a `https://` (hecho el 10 de noviembre).
 - [ ] **Search Console** (cuenta de Google `/u/2/` del Chrome): la web ya está
   indexada y aparece al buscar "la liga rural pride" (posición media 3,4) (14 de octubre). Sitemap
   reenviado el 14 de octubre; seguía en "No se ha podido obtener" aunque el
