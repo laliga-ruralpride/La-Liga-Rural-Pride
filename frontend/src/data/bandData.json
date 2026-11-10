@@ -57,32 +57,42 @@
   ],
   "merch": [
     {
-      "name": "Camiseta Clásica",
-      "type": "Ropa",
-      "price": "15€"
-    },
-    {
-      "name": "Sudadera Logo",
-      "type": "Ropa",
-      "price": "30€"
-    },
-    {
-      "name": "Tote Bag Punk",
-      "type": "Accesorios",
+      "name": "CD · Primer EP",
+      "type": "Música",
+      "image": "/images/merch-cd-ep.jpg",
+      "alt": "CD del primer EP de La Liga Rural Pride: portada, contraportada con las canciones y disco",
       "price": "10€"
     },
     {
-      "name": "Pack Pegatinas",
-      "type": "Accesorios",
-      "price": "5€"
+      "name": "Camiseta Negra Logo",
+      "type": "Ropa",
+      "image": "/images/merch-camiseta-negra.jpg",
+      "alt": "Camiseta negra, delante y detrás: logo de La Liga Rural Pride en el pecho y espalda lisa",
+      "price": "15€"
+    },
+    {
+      "name": "Camiseta Blanca Rural Pride",
+      "type": "Ropa",
+      "image": "/images/merch-camiseta-blanca.jpg",
+      "alt": "Camiseta blanca Rural Pride, delante y detrás: «Un pasado que explotar, un futuro que llora»",
+      "price": "18€"
     }
   ],
-  "gigs": [
+  "packs": [
     {
-      "date": "2026-11-07T22:00:00.000Z",
-      "venue": "Presentación EP - Discoteca SanBar (con Alarmados)",
-      "city": "Navas de Oro, Segovia",
-      "status": "confirmed"
+      "name": "Pack CD + Camiseta Negra",
+      "type": "CD del primer EP + camiseta negra con logo",
+      "price": "22€",
+      "image": "/images/merch-pack-negra.jpg",
+      "alt": "Pack de la camiseta negra con logo y el CD del primer EP"
+    },
+    {
+      "name": "Pack CD + Camiseta Blanca",
+      "type": "CD del primer EP + camiseta blanca Rural Pride",
+      "price": "25€",
+      "image": "/images/merch-pack-blanca.jpg",
+      "alt": "Pack de la camiseta blanca Rural Pride y el CD del primer EP"
     }
-  ]
+  ],
+  "gigs": []
 }

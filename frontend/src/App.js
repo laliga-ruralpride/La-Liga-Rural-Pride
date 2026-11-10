@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import "@/App.css";
 import { Toaster, toast } from "sonner";
 import {
@@ -102,6 +102,7 @@ const Navigation = ({ activeSection, onNavigate, isMenuOpen, setIsMenuOpen }) =>
     { id: "bio", label: "Biografía" },
     { id: "discography", label: "Discografía" },
     { id: "gigs", label: "Conciertos" },
+    { id: "merch", label: "Merch" },
     { id: "gallery", label: "Galería" },
     { id: "booking", label: "Contrataciones" },
     { id: "contact", label: "Contacto" }
@@ -336,9 +337,11 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
                   <span className="text-[#E11D48] uppercase">Lanzamiento:</span> {ep.release} ·
                   Spotify y todas las plataformas
                 </p>
-                <p className="text-[#eeeeee]">
-                  <span className="text-[#E11D48] uppercase">Presentación:</span> {ep.presentation}
-                </p>
+                {ep.presentation && (
+                  <p className="text-[#eeeeee]">
+                    <span className="text-[#E11D48] uppercase">Presentación:</span> {ep.presentation}
+                  </p>
+                )}
                 <p className="text-[#888888] text-xs pt-2">{ep.credits}</p>
               </div>
 
@@ -519,7 +522,91 @@ const GigsSection = ({ gigs }) => {
 };
 
 // Merch Section
-const MerchSection = ({ merch, bandInfo }) => {
+const MerchLightbox = ({ item, onClose }) => {
+  const closeRef = useRef(null);
+
+  useEffect(() => {
+    if (!item) return undefined;
+    const onKey = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    closeRef.current?.focus();
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [item, onClose]);
+
+  if (!item) return null;
+
+  return (
+    <div
+      className="merch-lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label={item.name}
+      onClick={onClose}
+      data-testid="merch-lightbox"
+    >
+      <button
+        ref={closeRef}
+        type="button"
+        className="merch-lightbox-close"
+        onClick={onClose}
+        aria-label="Cerrar imagen"
+      >
+        <X size={28} />
+      </button>
+      <figure onClick={(e) => e.stopPropagation()}>
+        <img src={process.env.PUBLIC_URL + item.image} alt={item.alt || item.name} />
+        <figcaption className="font-mono text-sm text-[#eeeeee] mt-3 text-center">
+          {item.name}
+          {item.price && <span className="text-[#E11D48] ml-3">{item.price}</span>}
+        </figcaption>
+      </figure>
+    </div>
+  );
+};
+
+const MerchCard = ({ item, testId, onOpen }) => (
+  <div className="merch-item" data-testid={testId}>
+    <div className="merch-image">
+      {item.image ? (
+        <button
+          type="button"
+          className="merch-zoom"
+          onClick={() => onOpen(item)}
+          aria-label={`Ampliar imagen: ${item.name}`}
+        >
+          <img
+            src={process.env.PUBLIC_URL + item.image}
+            alt={item.alt || item.name}
+            loading="lazy"
+            width="900"
+            height="900"
+          />
+        </button>
+      ) : (
+        <ShoppingBag size={64} />
+      )}
+    </div>
+    <div className="p-4">
+      <p className="font-['Anton'] text-lg uppercase">{item.name}</p>
+      <p className="font-mono text-sm text-[#888888]">{item.type}</p>
+      {item.price && (
+        <p className="font-mono text-[#E11D48] text-xl mt-2">{item.price}</p>
+      )}
+    </div>
+  </div>
+);
+
+const MerchSection = ({ merch, packs, bandInfo }) => {
+  const [zoomed, setZoomed] = useState(null);
+  const closeZoom = useCallback(() => setZoomed(null), []);
+
   return (
     <section id="merch" className="py-24 bg-[#0a0a0a]" data-testid="merch-section">
       <div className="container-punk">
@@ -531,20 +618,24 @@ const MerchSection = ({ merch, bandInfo }) => {
           Lleva La Liga contigo. Contacta para pedidos.
         </p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-md sm:max-w-none mx-auto">
           {merch.map((item, index) => (
-            <div key={index} className="merch-item" data-testid={`merch-${index}`}>
-              <div className="merch-image">
-                <ShoppingBag size={64} />
-              </div>
-              <div className="p-4">
-                <p className="font-['Anton'] text-lg uppercase">{item.name}</p>
-                <p className="font-mono text-sm text-[#888888]">{item.type}</p>
-                <p className="font-mono text-[#E11D48] text-xl mt-2">{item.price}</p>
-              </div>
-            </div>
+            <MerchCard key={index} item={item} testId={`merch-${index}`} onOpen={setZoomed} />
           ))}
         </div>
+
+        {packs.length > 0 && (
+          <>
+            <h3 className="font-['Anton'] text-3xl uppercase text-[#eeeeee] mt-16 mb-6 text-center">
+              <span className="text-[#E11D48]">Packs</span> CD + camiseta
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-md sm:max-w-none lg:max-w-[66%] mx-auto">
+              {packs.map((item, index) => (
+                <MerchCard key={index} item={item} testId={`merch-pack-${index}`} onOpen={setZoomed} />
+              ))}
+            </div>
+          </>
+        )}
 
         <div className="mt-12 text-center">
           <p className="font-mono text-[#888888] mb-4">Para pedidos, escríbenos a:</p>
@@ -557,6 +648,7 @@ const MerchSection = ({ merch, bandInfo }) => {
           </a>
         </div>
       </div>
+      <MerchLightbox item={zoomed} onClose={closeZoom} />
     </section>
   );
 };
@@ -1039,6 +1131,7 @@ function App() {
   const [featuredSingle] = useState(bandData.featuredSingle || null);
   const [discography] = useState(bandData.discography || []);
   const [merch] = useState(bandData.merch || []);
+  const [packs] = useState(bandData.packs || []);
   const [gigs] = useState((bandData.gigs || []).filter(isUpcoming));
 
   // Band Info
@@ -1071,7 +1164,7 @@ function App() {
   // Track active section on scroll
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["hero", "bio", "discography", "gigs", "gallery", "booking", "contact"];
+      const sections = ["hero", "bio", "discography", "gigs", "merch", "gallery", "booking", "contact"];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -1109,6 +1202,7 @@ function App() {
           bandInfo={bandInfo}
         />
         <GigsSection gigs={gigs} />
+        {merch.length > 0 && <MerchSection merch={merch} packs={packs} bandInfo={bandInfo} />}
         <GallerySection />
         <BookingSection bandInfo={bandInfo} />
         <ContactSection bandInfo={bandInfo} />
