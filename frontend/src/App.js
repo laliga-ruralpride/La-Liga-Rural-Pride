@@ -193,7 +193,7 @@ const HeroSection = ({ bandInfo, onNavigate }) => {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src={process.env.PUBLIC_URL + "/images/portada.jpg"}
+          src={process.env.PUBLIC_URL + "/images/portada.webp"}
           alt="La Liga en concierto"
           className="w-full h-full object-cover"
         />
@@ -258,7 +258,7 @@ const BioSection = ({ bandInfo, members }) => {
           {/* Image */}
           <div className="relative">
             <img
-              src={process.env.PUBLIC_URL + "/images/laliga.jpg"}
+              src={process.env.PUBLIC_URL + "/images/laliga.webp"}
               alt="La Liga Rural Pride banda"
               className="w-full aspect-square lg:aspect-auto lg:h-[500px] object-cover border border-[#333333]"
             />
@@ -666,7 +666,7 @@ const GallerySection = () => {
         <div className="gallery-grid">
           {/* Row 1 */}
           <div className="gallery-item" data-testid="gallery-img-nava">
-            <img src={process.env.PUBLIC_URL + "/images/Nava.jpg"} alt="Nava" loading="lazy" />
+            <img src={process.env.PUBLIC_URL + "/images/Nava.webp"} alt="Nava" loading="lazy" />
           </div>
           <div className="gallery-item bg-[#121212] border border-[#333333] flex items-center justify-center p-4 md:p-6">
             <p className="handwritten text-lg md:text-2xl text-center">
@@ -675,7 +675,7 @@ const GallerySection = () => {
           </div>
           <div className="gallery-item" data-testid="gallery-img-ep">
             <img
-              src={process.env.PUBLIC_URL + "/images/DeLunesAViernes.jpg"}
+              src={process.env.PUBLIC_URL + "/images/DeLunesAViernes.webp"}
               alt="De Lunes a Viernes EP"
               loading="lazy"
               style={{ objectPosition: "bottom" }}
@@ -685,7 +685,7 @@ const GallerySection = () => {
           {/* Row 2 */}
           <div className="gallery-item" data-testid="gallery-img-matanzanava">
             <img
-              src={process.env.PUBLIC_URL + "/images/matanzaNava.jpg"}
+              src={process.env.PUBLIC_URL + "/images/matanzaNava.webp"}
               alt="Concierto Nava"
               loading="lazy"
             />
@@ -697,7 +697,7 @@ const GallerySection = () => {
           </div>
           <div className="gallery-item" data-testid="gallery-img-vidacirco">
             <img
-              src={process.env.PUBLIC_URL + "/images/vidacirco.jpg"}
+              src={process.env.PUBLIC_URL + "/images/vidacirco.webp"}
               alt="Vida de Circo"
               loading="lazy"
             />
@@ -706,7 +706,7 @@ const GallerySection = () => {
           {/* Row 3 */}
           <div className="gallery-item" data-testid="gallery-img-ligagrupo">
             <img
-              src={process.env.PUBLIC_URL + "/images/ligagrupo.jpg"}
+              src={process.env.PUBLIC_URL + "/images/ligagrupo.webp"}
               alt="Logo La Liga"
               loading="lazy"
             />
@@ -719,7 +719,7 @@ const GallerySection = () => {
           </div>
           <div className="gallery-item" data-testid="gallery-img-airenuevo">
             <img
-              src={process.env.PUBLIC_URL + "/images/airenuevo.jpg"}
+              src={process.env.PUBLIC_URL + "/images/airenuevo.webp"}
               alt="Aire Nuevo"
               loading="lazy"
             />

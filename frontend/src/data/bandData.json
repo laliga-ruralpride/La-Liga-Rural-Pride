@@ -42,14 +42,14 @@
     {
       "title": "Aire Nuevo",
       "year": "2024",
-      "cover": "/images/airenuevo.jpg",
+      "cover": "/images/airenuevo.webp",
       "description": "Nuestro primer zarpazo. Un grito a las raíces y a la nostalgia que sientes cuando te obligan a cambiar tu tierra por el asfalto de la gran ciudad.",
       "spotifyEmbed": ""
     },
     {
       "title": "Vida de Circo",
       "year": "2025",
-      "cover": "/images/vidacirco.jpg",
+      "cover": "/images/vidacirco.webp",
       "description": "Segundo tema propio de La Liga Rural Pride, directo y potente.",
       "spotifyEmbed": ""
     }
@@ -58,21 +58,21 @@
     {
       "name": "CD · Primer EP",
       "type": "Música",
-      "image": "/images/merch-cd-ep.jpg",
+      "image": "/images/merch-cd-ep.webp",
       "alt": "CD del primer EP de La Liga Rural Pride: portada, contraportada con las canciones y disco",
       "price": "10€"
     },
     {
       "name": "Camiseta Negra Logo",
       "type": "Ropa",
-      "image": "/images/merch-camiseta-negra.jpg",
+      "image": "/images/merch-camiseta-negra.webp",
       "alt": "Camiseta negra, delante y detrás: logo de La Liga Rural Pride en el pecho y espalda lisa",
       "price": "15€"
     },
     {
       "name": "Camiseta Blanca Rural Pride",
       "type": "Ropa",
-      "image": "/images/merch-camiseta-blanca.jpg",
+      "image": "/images/merch-camiseta-blanca.webp",
       "alt": "Camiseta blanca Rural Pride, delante y detrás: «Un pasado que explotar, un futuro que llora»",
       "price": "18€"
     }
@@ -82,14 +82,14 @@
       "name": "Pack CD + Camiseta Negra",
       "type": "CD del primer EP + camiseta negra con logo",
       "price": "22€",
-      "image": "/images/merch-pack-negra.jpg",
+      "image": "/images/merch-pack-negra.webp",
       "alt": "Pack de la camiseta negra con logo y el CD del primer EP"
     },
     {
       "name": "Pack CD + Camiseta Blanca",
       "type": "CD del primer EP + camiseta blanca Rural Pride",
       "price": "25€",
-      "image": "/images/merch-pack-blanca.jpg",
+      "image": "/images/merch-pack-blanca.webp",
       "alt": "Pack de la camiseta blanca Rural Pride y el CD del primer EP"
     }
   ],
