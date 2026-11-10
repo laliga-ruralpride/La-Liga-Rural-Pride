@@ -379,9 +379,11 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
               ></iframe>
             </div>
             <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-[#E11D48] mb-2">
-                {featuredSingle.label}
-              </p>
+              {featuredSingle.label && (
+                <p className="font-mono text-xs uppercase tracking-widest text-[#E11D48] mb-2">
+                  {featuredSingle.label}
+                </p>
+              )}
               <h3 className="font-['Anton'] text-4xl md:text-5xl uppercase mb-6">
                 {featuredSingle.title}
               </h3>

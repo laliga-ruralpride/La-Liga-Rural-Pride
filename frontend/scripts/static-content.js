@@ -56,7 +56,7 @@ const sections = [
   `<ol>${ep.tracks.map((t) => `<li>${esc(t.title)}${t.note ? ` (${esc(t.note)})` : ""}</li>`).join("")}</ol>`,
   `<p>${esc(ep.credits)}</p>`,
   band.featuredSingle
-    ? `<p>${esc(band.featuredSingle.label)}: ${link(
+    ? `<p>${band.featuredSingle.label ? `${esc(band.featuredSingle.label)}: ` : ""}${link(
         `https://www.youtube.com/watch?v=${band.featuredSingle.youtubeId}`,
         `videoclip de «${band.featuredSingle.title}» en YouTube`
       )}</p>`
