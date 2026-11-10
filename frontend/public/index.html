@@ -6,6 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#E11D48" />
 
+    <!-- Seguridad (CSP): el navegador solo carga recursos de estos sitios.
+         Si añadís un servicio nuevo (otro vídeo, analítica...), hay que añadir su dominio aquí.
+         El hash 'sha256-...' corresponde al script que añade la clase "js" más abajo: si se cambia ese script, hay que recalcularlo. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-qOhFsq0QMV2REqNwk5hGH5bZE9SkX6gt6yeyKdYPv+U='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-src https://open.spotify.com https://www.youtube-nocookie.com; connect-src 'self' https://formspree.io; form-action https://formspree.io; object-src 'none'; base-uri 'self'; upgrade-insecure-requests" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
     <!-- SEO Meta Tags -->
     <meta name="description"
         content="La Liga Rural Pride, banda de punk rock español con sección de vientos de Pinares de Segovia. Escucha nuestro primer EP y contrátanos para tocar en toda España." />
@@ -49,7 +55,7 @@
 
     <!-- Con JavaScript, React pinta la web: el texto para buscadores de #static-content
          (lo añade scripts/static-content.js al compilar) se oculta para que no parpadee -->
-    <script>document.documentElement.classList.add("js");</script>
+    <script>document.documentElement.classList.add("js")</script>
     <style>
       .js #static-content { display: none; }
       #static-content { max-width: 720px; margin: 0 auto; padding: 32px 16px; color: #eeeeee; background: #050505; font-family: system-ui, sans-serif; line-height: 1.6; }
