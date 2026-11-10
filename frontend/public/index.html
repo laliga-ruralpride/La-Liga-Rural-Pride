@@ -8,7 +8,7 @@
 
     <!-- SEO Meta Tags -->
     <meta name="description"
-        content="La Liga Rural Pride, banda de punk rock español con sección de vientos de Pinares de Segovia. Escucha nuestro primer EP, consulta los próximos conciertos y contrátanos." />
+        content="La Liga Rural Pride, banda de punk rock español con sección de vientos de Pinares de Segovia. Escucha nuestro primer EP y contrátanos para tocar en toda España." />
     <meta name="keywords"
         content="La Liga Rural Pride, punk rock, punk rural, Segovia, banda, rock español, sección de vientos, conciertos, EP, Corazón de Piedra Dura, De Lunes a Viernes, Aire Nuevo, Vida de Circo, Resurrección" />
     <meta name="author" content="La Liga Rural Pride" />
@@ -28,7 +28,7 @@
     <meta property="og:image" content="https://laliga-ruralpride.github.io/La-Liga-Rural-Pride/images/ligagrupo.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="800" />
-    <meta property="og:image:alt" content="Logo de La Liga Rural Pride" />
+    <meta property="og:image:alt" content="Foto del grupo La Liga Rural Pride" />
     <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter -->
@@ -47,6 +47,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet" />
 
+    <!-- Con JavaScript, React pinta la web: el texto para buscadores de #static-content
+         (lo añade scripts/static-content.js al compilar) se oculta para que no parpadee -->
+    <script>document.documentElement.classList.add("js");</script>
+    <style>
+      .js #static-content { display: none; }
+      #static-content { max-width: 720px; margin: 0 auto; padding: 32px 16px; color: #eeeeee; background: #050505; font-family: system-ui, sans-serif; line-height: 1.6; }
+      #static-content a { color: #E11D48; }
+    </style>
     <title>La Liga Rural Pride · Banda de Punk Rock de Segovia | Web oficial</title>
 
     <!-- Datos estructurados: declara explícitamente que esto es una BANDA de música -->
@@ -75,7 +83,7 @@
 </head>
 
 <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript>Activa JavaScript para ver la web completa de La Liga Rural Pride.</noscript>
     <div id="root"></div>
     <!--
       This HTML file is a template.
