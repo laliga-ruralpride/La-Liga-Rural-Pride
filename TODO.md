@@ -30,8 +30,8 @@ Pendiente (editar en cada plataforma, requiere login de admin):
   portada nueva salga en Google al buscar "la liga rural pride".
 - [x] **Cambiar enlaces a la web nueva**: Instagram, Linktree, YouTube, Spotify y
   portfolio (hecho el 11 de noviembre).
-- [ ] **Quitar el sitemap antiguo** (`/La-Liga-Rural-Pride/sitemap.xml`) de la lista de
-  Search Console, que da error porque esa dirección ya no existe.
+- [x] **Quitar el sitemap antiguo** (`/La-Liga-Rural-Pride/sitemap.xml`) de Search Console
+  (hecho el 11 de noviembre).
 
 ## Mantenimiento
 
