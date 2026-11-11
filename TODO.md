@@ -28,7 +28,16 @@ Pendiente (editar en cada plataforma, requiere login de admin):
   (verificada sola con la etiqueta meta), se envió `sitemap.xml` y se pidió indexar la portada.
   **Revisar hacia el 14-18 de noviembre** que el sitemap pase a "Correcto" y que la
   portada nueva salga en Google al buscar "la liga rural pride".
-- [ ] **Cambiar enlaces a la web nueva** (lo hace Pablo): Instagram, Linktree, YouTube,
-  Spotify y cualquier otro sitio que apunte a la dirección antigua.
+- [x] **Cambiar enlaces a la web nueva**: Instagram, Linktree, YouTube, Spotify y
+  portfolio (hecho el 11 de noviembre).
+- [ ] **Quitar el sitemap antiguo** (`/La-Liga-Rural-Pride/sitemap.xml`) de la lista de
+  Search Console, que da error porque esa dirección ya no existe.
+
+## Mantenimiento
+
+- [ ] **Migrar de Create React App a Vite** (previsto para la noche del 11 de noviembre).
+  CRA ya no tiene mantenimiento. Al migrar hay que conservar: `homepage`/base `/`,
+  el script `postbuild` (`scripts/static-content.js`), la CSP con el hash del script
+  inline de `index.html` y `yarn deploy` a `gh-pages`.
 - [ ] (Opcional) Valorar perfiles en Bandcamp / Apple Music para reforzar
   la identidad de banda.
