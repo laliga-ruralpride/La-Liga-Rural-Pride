@@ -77,7 +77,10 @@ const sections = [
       (item) => `${esc(item.name)}${item.price ? `: ${esc(item.price)}` : ""}`
     )
   ),
-  `<p>Pedidos: ${link(`mailto:${info.contact.email}`, info.contact.email)}</p>`,
+  `<p>Pedidos (camisetas, CD y packs): ${link(
+    `https://wa.me/${info.contact.whatsappPedidos}`,
+    "WhatsApp +34 687 39 31 50"
+  )}</p>`,
 
   `<h2>Contrataciones</h2>`,
   `<p>Para fiestas, salas y festivales de toda España. ${link(

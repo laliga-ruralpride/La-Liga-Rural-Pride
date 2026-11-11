@@ -525,6 +525,10 @@ const GigsSection = ({ gigs }) => {
 };
 
 // Merch Section
+// Los pedidos de merch van por WhatsApp (las contrataciones siguen por correo).
+const whatsappUrl = (number, text) =>
+  `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
+
 const MerchLightbox = ({ item, onClose }) => {
   const closeRef = useRef(null);
 
@@ -574,7 +578,7 @@ const MerchLightbox = ({ item, onClose }) => {
   );
 };
 
-const MerchCard = ({ item, testId, onOpen }) => (
+const MerchCard = ({ item, testId, onOpen, whatsapp }) => (
   <div className="merch-item" data-testid={testId}>
     <div className="merch-image">
       {item.image ? (
@@ -602,6 +606,20 @@ const MerchCard = ({ item, testId, onOpen }) => (
       {item.price && (
         <p className="font-mono text-[#E11D48] text-xl mt-2">{item.price}</p>
       )}
+      {whatsapp && (
+        <a
+          href={whatsappUrl(
+            whatsapp,
+            `¡Hola! Quiero reservar: ${item.name}${item.price ? ` (${item.price})` : ""}`
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block font-mono text-sm text-[#eeeeee] underline hover:text-[#E11D48] mt-3"
+          data-testid={`${testId}-whatsapp`}
+        >
+          Reservar por WhatsApp
+        </a>
+      )}
     </div>
   </div>
 );
@@ -609,6 +627,7 @@ const MerchCard = ({ item, testId, onOpen }) => (
 const MerchSection = ({ merch, packs, bandInfo }) => {
   const [zoomed, setZoomed] = useState(null);
   const closeZoom = useCallback(() => setZoomed(null), []);
+  const whatsapp = bandInfo.contact.whatsappPedidos;
 
   return (
     <section id="merch" className="py-24 bg-[#0a0a0a]" data-testid="merch-section">
@@ -618,12 +637,12 @@ const MerchSection = ({ merch, packs, bandInfo }) => {
           Merchandising
         </h2>
         <p className="font-mono text-[#888888] mb-16 max-w-xl">
-          Lleva La Liga contigo. Contacta para pedidos.
+          Lleva La Liga contigo. Reserva tu pedido por WhatsApp.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-md sm:max-w-none mx-auto">
           {merch.map((item, index) => (
-            <MerchCard key={index} item={item} testId={`merch-${index}`} onOpen={setZoomed} />
+            <MerchCard key={index} item={item} testId={`merch-${index}`} onOpen={setZoomed} whatsapp={whatsapp} />
           ))}
         </div>
 
@@ -634,20 +653,24 @@ const MerchSection = ({ merch, packs, bandInfo }) => {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-md sm:max-w-none lg:max-w-[66%] mx-auto">
               {packs.map((item, index) => (
-                <MerchCard key={index} item={item} testId={`merch-pack-${index}`} onOpen={setZoomed} />
+                <MerchCard key={index} item={item} testId={`merch-pack-${index}`} onOpen={setZoomed} whatsapp={whatsapp} />
               ))}
             </div>
           </>
         )}
 
         <div className="mt-12 text-center">
-          <p className="font-mono text-[#888888] mb-4">Para pedidos, escríbenos a:</p>
+          <p className="font-mono text-[#888888] mb-4">
+            Para reservar camisetas, discos o packs, escríbenos por WhatsApp:
+          </p>
           <a
-            href={`mailto:${bandInfo.contact.email}?subject=Pedido Merch La Liga`}
+            href={whatsappUrl(whatsapp, "¡Hola! Quiero reservar merch de La Liga Rural Pride:")}
+            target="_blank"
+            rel="noopener noreferrer"
             className="btn-punk-solid"
             data-testid="merch-contact-btn"
           >
-            Hacer Pedido
+            Reservar por WhatsApp
           </a>
         </div>
       </div>
