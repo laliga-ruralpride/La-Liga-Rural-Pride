@@ -43,6 +43,8 @@ Hace falta [Node.js](https://nodejs.org) y [Yarn](https://yarnpkg.com).
 cd frontend
 yarn install     # solo la primera vez
 yarn start       # abre la web en http://localhost:3000 y se recarga al guardar
+yarn build       # compila la web en frontend/build/
+yarn preview     # sirve esa compilación en http://localhost:4173 para revisarla tal cual se publicará
 ```
 
 ## Publicar cambios
@@ -58,8 +60,9 @@ Recuerda también guardar el código en `main` con `git commit` y `git push`. `y
 
 ## Detalles técnicos
 
-- **React** (Create React App + CRACO) y **Tailwind CSS**. Casi toda la web está en `frontend/src/App.js`.
+- **React** con **[Vite](https://vite.dev)** y **Tailwind CSS**. Casi toda la web está en `frontend/src/App.jsx`. La configuración está en `frontend/vite.config.mjs`.
+- **Imágenes y PDF** van en `frontend/public/`. En el código se enlazan con `asset("/images/...")`.
 - **Texto para buscadores:** al compilar, `frontend/scripts/static-content.js` mete en el HTML una versión en texto de la web, hecha con los mismos JSON. Así Google, ChatGPT y otros rastreadores que no ejecutan JavaScript también pueden leerla.
-- **SEO:** en `frontend/public/index.html` están los datos estructurados `MusicGroup`, para que Google sepa que es una banda y no la liga de fútbol, y las etiquetas para compartir en redes. `sitemap.xml` y `robots.txt` están en `frontend/public/`.
-- **Seguridad (CSP):** `index.html` tiene una política de seguridad que solo permite el script en línea cuyo hash aparece en ella. **Si cambias ese `<script>`, actualiza el hash**, porque si no el navegador lo bloquea. Si añades un servicio externo nuevo (otro reproductor, otra API), también hay que añadirlo a la CSP.
+- **SEO:** en `frontend/index.html` están los datos estructurados `MusicGroup`, para que Google sepa que es una banda y no la liga de fútbol, y las etiquetas para compartir en redes. `sitemap.xml` y `robots.txt` están en `frontend/public/`.
+- **Seguridad (CSP):** `frontend/index.html` tiene una política de seguridad que solo permite el script en línea cuyo hash aparece en ella. **Si cambias ese `<script>`, actualiza el hash**, porque si no el navegador lo bloquea. Si añades un servicio externo nuevo (otro reproductor, otra API), también hay que añadirlo a la CSP. Con `yarn start` la CSP se quita a propósito, porque Vite necesita sus propios scripts para recargar al guardar. Para comprobar la CSP de verdad, usa `yarn build && yarn preview`.
 - `fotos-originales/` guarda las fotos a tamaño completo y no se sube al repo (está en `.gitignore`).

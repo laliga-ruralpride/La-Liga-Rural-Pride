@@ -23,6 +23,9 @@ import bandData from "./data/bandData.json";
 import epData from "./data/ep.json";
 import bandInfoData from "./data/bandInfo.json";
 
+// Ruta a un fichero de public/ (imágenes, PDF) respetando la base de Vite.
+const asset = (path) => import.meta.env.BASE_URL + path.replace(/^\//, "");
+
 // Cookie Banner
 const CookieBanner = () => {
   const [showBanner, setShowBanner] = useState(false);
@@ -193,7 +196,7 @@ const HeroSection = ({ bandInfo, onNavigate }) => {
       {/* Background */}
       <div className="absolute inset-0">
         <img
-          src={process.env.PUBLIC_URL + "/images/portada.webp"}
+          src={asset("/images/portada.webp")}
           alt="La Liga en concierto"
           className="w-full h-full object-cover"
         />
@@ -258,7 +261,7 @@ const BioSection = ({ bandInfo, members }) => {
           {/* Image */}
           <div className="relative">
             <img
-              src={process.env.PUBLIC_URL + "/images/laliga.webp"}
+              src={asset("/images/laliga.webp")}
               alt="La Liga Rural Pride banda"
               className="w-full aspect-square lg:aspect-auto lg:h-[500px] object-cover border border-[#333333]"
             />
@@ -302,7 +305,7 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
         {ep && (
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-24" data-testid="ep-featured">
             <img
-              src={process.env.PUBLIC_URL + ep.cover}
+              src={asset(ep.cover)}
               alt={`Portada del EP ${ep.title}`}
               loading="lazy"
               className="w-full max-w-md mx-auto lg:max-w-none aspect-square object-cover border border-[#333333]"
@@ -410,7 +413,7 @@ const DiscographySection = ({ ep, featuredSingle, discography, bandInfo }) => {
               data-testid={`album-${index}`}
             >
               <div className="album-cover">
-                <img src={process.env.PUBLIC_URL + album.cover} alt={album.title} loading="lazy" />
+                <img src={asset(album.cover)} alt={album.title} loading="lazy" />
                 <div className="album-overlay">
                   <span className="text-[#E11D48] font-mono text-xs">{album.year}</span>
                   <h3 className="font-['Anton'] text-2xl uppercase">{album.title}</h3>
@@ -568,7 +571,7 @@ const MerchLightbox = ({ item, onClose }) => {
         <X size={28} />
       </button>
       <figure onClick={(e) => e.stopPropagation()}>
-        <img src={process.env.PUBLIC_URL + item.image} alt={item.alt || item.name} />
+        <img src={asset(item.image)} alt={item.alt || item.name} />
         <figcaption className="font-mono text-sm text-[#eeeeee] mt-3 text-center">
           {item.name}
           {item.price && <span className="text-[#E11D48] ml-3">{item.price}</span>}
@@ -589,7 +592,7 @@ const MerchCard = ({ item, testId, onOpen, whatsapp }) => (
           aria-label={`Ampliar imagen: ${item.name}`}
         >
           <img
-            src={process.env.PUBLIC_URL + item.image}
+            src={asset(item.image)}
             alt={item.alt || item.name}
             loading="lazy"
             width="900"
@@ -689,7 +692,7 @@ const GallerySection = () => {
         <div className="gallery-grid">
           {/* Row 1 */}
           <div className="gallery-item" data-testid="gallery-img-nava">
-            <img src={process.env.PUBLIC_URL + "/images/Nava.webp"} alt="Nava" loading="lazy" />
+            <img src={asset("/images/Nava.webp")} alt="Nava" loading="lazy" />
           </div>
           <div className="gallery-item bg-[#121212] border border-[#333333] flex items-center justify-center p-4 md:p-6">
             <p className="handwritten text-lg md:text-2xl text-center">
@@ -698,7 +701,7 @@ const GallerySection = () => {
           </div>
           <div className="gallery-item" data-testid="gallery-img-ep">
             <img
-              src={process.env.PUBLIC_URL + "/images/DeLunesAViernes.webp"}
+              src={asset("/images/DeLunesAViernes.webp")}
               alt="De Lunes a Viernes EP"
               loading="lazy"
               style={{ objectPosition: "bottom" }}
@@ -708,7 +711,7 @@ const GallerySection = () => {
           {/* Row 2 */}
           <div className="gallery-item" data-testid="gallery-img-matanzanava">
             <img
-              src={process.env.PUBLIC_URL + "/images/matanzaNava.webp"}
+              src={asset("/images/matanzaNava.webp")}
               alt="Concierto Nava"
               loading="lazy"
             />
@@ -720,7 +723,7 @@ const GallerySection = () => {
           </div>
           <div className="gallery-item" data-testid="gallery-img-vidacirco">
             <img
-              src={process.env.PUBLIC_URL + "/images/vidacirco.webp"}
+              src={asset("/images/vidacirco.webp")}
               alt="Vida de Circo"
               loading="lazy"
             />
@@ -729,7 +732,7 @@ const GallerySection = () => {
           {/* Row 3 */}
           <div className="gallery-item" data-testid="gallery-img-ligagrupo">
             <img
-              src={process.env.PUBLIC_URL + "/images/ligagrupo.webp"}
+              src={asset("/images/ligagrupo.webp")}
               alt="Logo La Liga"
               loading="lazy"
             />
@@ -742,7 +745,7 @@ const GallerySection = () => {
           </div>
           <div className="gallery-item" data-testid="gallery-img-airenuevo">
             <img
-              src={process.env.PUBLIC_URL + "/images/airenuevo.webp"}
+              src={asset("/images/airenuevo.webp")}
               alt="Aire Nuevo"
               loading="lazy"
             />
@@ -825,7 +828,7 @@ const BookingSection = ({ bandInfo }) => {
 
           {/* Dossier de prensa */}
           <a
-            href={process.env.PUBLIC_URL + "/dossier-la-liga-rural-pride-2026.pdf"}
+            href={asset("/dossier-la-liga-rural-pride-2026.pdf")}
             download="Dossier La Liga Rural Pride.pdf"
             target="_blank"
             rel="noopener noreferrer"

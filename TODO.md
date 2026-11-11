@@ -35,9 +35,6 @@ Pendiente (editar en cada plataforma, requiere login de admin):
 
 ## Mantenimiento
 
-- [ ] **Migrar de Create React App a Vite** (previsto para la noche del 11 de noviembre).
-  CRA ya no tiene mantenimiento. Al migrar hay que conservar: `homepage`/base `/`,
-  el script `postbuild` (`scripts/static-content.js`), la CSP con el hash del script
-  inline de `index.html` y `yarn deploy` a `gh-pages`.
+- [x] **Migrar de Create React App a Vite** (hecho el 11 de noviembre).
 - [ ] (Opcional) Valorar perfiles en Bandcamp / Apple Music para reforzar
   la identidad de banda.
