@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://laliga-ruralpride.github.io/La-Liga-Rural-Pride",
+  "homepage": "https://laliga-ruralpride.github.io",
   "private": true,
   "dependencies": {
     "lucide-react": "^0.507.0",
