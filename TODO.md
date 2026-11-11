@@ -22,11 +22,13 @@ Pendiente (editar en cada plataforma, requiere login de admin):
   Decidido el 14 de octubre no añadir el enlace a la web.
 - [x] **Spotify for Artists**: añadir enlaces sociales (Instagram, YouTube). Hecho el 14 de octubre.
 - [x] **Linktree**: el botón "Web" ya apunta a `https://` (hecho el 10 de noviembre).
-- [ ] **Search Console** (cuenta de Google `/u/2/` del Chrome): la web ya está
-  indexada y aparece al buscar "la liga rural pride" (posición media 3,4) (14 de octubre). Sitemap
-  reenviado el 14 de octubre; seguía en "No se ha podido obtener" aunque el
-  archivo es accesible. El 10 de noviembre se comprobó que el sitemap es correcto
-  (URL bien, XML válido) y se reenvió. **Revisar hacia el 14-17 de noviembre** que
-  pase a "Correcto"; si sigue en rojo, usar "Inspección de URLs" con la URL del sitemap.
+- [ ] **Search Console** (cuenta de Google `/u/2/` del Chrome, infolaligamusica@gmail.com):
+  el 11 de noviembre la web se mudó a **https://laliga-ruralpride.github.io/**
+  (antes `/La-Liga-Rural-Pride/`, que ya da 404). Ese día se añadió la propiedad nueva
+  (verificada sola con la etiqueta meta), se envió `sitemap.xml` y se pidió indexar la portada.
+  **Revisar hacia el 14-18 de noviembre** que el sitemap pase a "Correcto" y que la
+  portada nueva salga en Google al buscar "la liga rural pride".
+- [ ] **Cambiar enlaces a la web nueva** (lo hace Pablo): Instagram, Linktree, YouTube,
+  Spotify y cualquier otro sitio que apunte a la dirección antigua.
 - [ ] (Opcional) Valorar perfiles en Bandcamp / Apple Music para reforzar
   la identidad de banda.
